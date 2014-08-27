@@ -10,3 +10,6 @@
 [submodule "vim/.vim/bundle/MatchTag"]
 	path = vim/.vim/bundle/MatchTag
 	url = https://github.com/gregsexton/MatchTag.git
+[submodule "vim/.vim/writegood.vim"]
+	path = vim/.vim/writegood.vim
+	url = https://github.com/davidbeckingsale/writegood.vim.git
