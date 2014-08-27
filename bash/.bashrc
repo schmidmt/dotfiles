@@ -14,50 +14,51 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-# Put your fun stuff here.
-
-# drobbin's keychain 
-/usr/bin/keychain --quiet ~/.ssh/id_dsa
-source ~/.keychain/descartes-sh > /dev/null
-
-case "$TERM" in
-screen)
-  TRUNC_HOST=`basename $HOSTNAME .cluster`
-  PROMPT_COMMAND='echo -ne "\033k$TRUNC_HOST\033\\"'
-  ;;
-esac
-
-# PythonPath
-export PYTHONPATH=${PYTHONPATH}:~/pe
-
-alias tree="ls -R | grep ':$' | sed -e 's/:$//' -e 's/[^\/]*\//|  /g' -e 's/|  \([^|]\)/'--\1/g'"
-alias hosts="ssh root@admin03 'cat /var/named/chroot/var/named/named.cluster' | tail --lines=+21 | grep -v '^$' | grep -v '\*' | grep -v '^\;' | grep -v CNAME | awk '{print \$1}' | sort"
-
-bssh() {
-      ssh -t bumba "sudo ssh $@";
+# Handy Helper Functions
+pathremove () {
+        local IFS=':'
+        local NEWPATH
+        local DIR
+        local PATHVARIABLE=${2:-PATH}
+        for DIR in ${!PATHVARIABLE} ; do
+                if [ "$DIR" != "$1" ] ; then
+                  NEWPATH=${NEWPATH:+$NEWPATH:}$DIR
+                fi
+        done
+        export $PATHVARIABLE="$NEWPATH"
 }
 
-newnote() {
-  notename=$1
-
-  notedir=${nodedir:-$HOME/notes}
-  if [[ ! -d ${notedir} ]]; then
-    mkdir -p ${notedir}
-  fi
-
-  datestr=$(date +%Y%m%d%H%M)
-  if [[ "x${notename}" == "x" ]]; then
-    notefile="${notedir}/${datestr}.markdown"
-    echo "Note: ${datestr}" > "${notefile}"
-  else
-    notefile="${nodedir}/${notename}.markdown"
-    echo "Note: ${notename} (${datestr})" > "${notefile}"
-  fi
-
-  echo "==================" >> "${notefile}"
-
-  gvim "${notefile}"
+pathprepend () {
+        pathremove $1 $2
+        local PATHVARIABLE=${2:-PATH}
+        export $PATHVARIABLE="$1${!PATHVARIABLE:+:${!PATHVARIABLE}}"
 }
 
+pathappend () {
+        pathremove $1 $2
+        local PATHVARIABLE=${2:-PATH}
+        export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
+}
+
+export -f pathremove pathprepend pathappend
 
 
+# Colors
+NORMAL="\[\e[0m\]"
+RED="\[\e[1;31m\]"
+GREEN="\[\e[1;32m\]"
+
+
+# Load Environment Name to load specific shell files
+if [[ -e ${HOME}/.bash_env ]]; then
+  export BASH_ENV=$(cat ${HOME}/.bash_env)
+else
+  BASH_ENV=''
+fi
+
+# Load scripts from .bashrc.d
+for script in ${HOME}/.bashrc.d/*.sh; do
+  if [[ -r ${script} ]]; then
+    source ${script}
+  fi
+done
