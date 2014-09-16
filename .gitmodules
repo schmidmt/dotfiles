@@ -13,3 +13,6 @@
 [submodule "vim/.vim/writegood.vim"]
 	path = vim/.vim/writegood.vim
 	url = https://github.com/davidbeckingsale/writegood.vim.git
+[submodule "vim/.vim/bundle/julia-vim"]
+	path = vim/.vim/bundle/julia-vim
+	url = git://github.com/JuliaLang/julia-vim.git
