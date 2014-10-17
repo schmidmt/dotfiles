@@ -81,7 +81,7 @@ myModMask       = mod4Mask
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 --myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
-myWorkspaces = ["web", "shell", "vbox", "kp" ] ++ map show [5..9]
+myWorkspaces = map show [1..9]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -120,9 +120,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run")
-
-    -- launch gmrun
-    --, ((modm,         xK_p     ), spawn "gmrun")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -231,21 +228,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Toggle to a window that wants your attention
     , ((modm, xK_Up                  ), focusUrgent)
 
-    -- Open graphical emacs client
-    , ((modm .|. shiftMask, xK_t ), spawn "emacsclient -c -n")
-
     -- Call the file manager, Dolphin (doesn't exist)
     --    , ((modm .|. shiftMask, xK_d ), spawn "dolphin")
-
-    -- Call LibreOffice office suite
-    -- , ((modm .|. shiftMask, xK_o ), spawn "libreoffice")
-    , ((modm .|. shiftMask, xK_w), spawn "libreoffice")
-
-    -- Call Musik player
-    , ((modm .|. shiftMask, xK_m ), spawn "clementine")
-
-    -- Call Firefox
-    , ((modm .|. shiftMask, xK_f ), spawn "firefox")
 
     -- Call pidgin
     , ((modm .|. shiftMask, xK_p ), spawn "pidgin")
