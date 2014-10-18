@@ -77,3 +77,5 @@ endif
 "filetype indent on
 "filetype plugin on
 "
+"
+let NERDTreeIgnore = ['\.pyc$']
