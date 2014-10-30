@@ -77,3 +77,4 @@ endif
 "filetype indent on
 "filetype plugin on
 "
+let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.swp$']

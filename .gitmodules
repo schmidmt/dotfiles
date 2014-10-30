@@ -28,3 +28,21 @@
 [submodule "vim/.vim/bundle/vim-javascript"]
 	path = vim/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "vim/.vim/bundle/vim-jsbeautify"]
+	path = vim/.vim/bundle/vim-jsbeautify
+	url = https://github.com/maksimr/vim-jsbeautify.git
+[submodule "vim/.vim/bundle/vim-coffee-script"]
+	path = vim/.vim/bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/.vim/bundle/vim-node"]
+	path = vim/.vim/bundle/vim-node
+	url = https://github.com/moll/vim-node.git
+[submodule "vim/.vim/bundle/tabular"]
+	path = vim/.vim/bundle/tabular
+	url = git://github.com/godlygeek/tabular.git
+[submodule "vim/.vim/bundle/jshint.vim"]
+	path = vim/.vim/bundle/jshint.vim
+	url = https://github.com/walm/jshint.vim.git
+[submodule "vim/.vim/bundle/syntastic"]
+	path = vim/.vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
