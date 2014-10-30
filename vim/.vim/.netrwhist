@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/schmidmt/svns/puppet/modules/worker/manifests'
-let g:netrw_dirhist_2='/home/schmidmt/pe/PETools'
-let g:netrw_dirhist_3='/home/schmidmt/tfssa/algebra2/polynomials'
-let g:netrw_dirhist_4='/home/schmidmt/Python-2.7.7/Lib/multiprocessing'
-let g:netrw_dirhist_5='/home/schmidmt/classes/algorithms1/algo1/src/main/java/algo/kdtree'
-let g:netrw_dirhist_6='/home/schmidmt/personal_webpage/js/app.js'
