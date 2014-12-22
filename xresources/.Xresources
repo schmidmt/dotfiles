@@ -2,13 +2,28 @@
 URxvt.scrollStyle: rxvt                                                                                                                                                                                                                                             
 URxvt.scrollBar: false  
 
-! Fonts
-! URxvt.font:    -*-terminus-medium-r-normal-*-14-160-*-*-*-*-iso10646-*
-URxvt*font: -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
-URxvt*boldFont: -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
-URxvt*italicFont: xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
-URxvt*boldItalicFont: xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
+! Save Lines (using screen, need none)
+URxvt*saveLines:  0
 
+! Little Fading
+URxvt*fading:  30
+
+! Spip Unnecessary Scrolling
+URxvt*skipScroll:  true
+URxvt*scrollWithBuffer:  false
+URxvt*scrollTtyOutput:  false
+URxvt*scrollTtyKeypress:  true
+
+! Bells
+URxvt*urgentOnBell: false
+URxvt*visualBell: true
+
+! Fonts
+!urxvt*boldColors: on
+!URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
+!URxvt*boldFont:  -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
+!URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
+!URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
 
 ! Solarized color scheme for the X Window System
 !
@@ -137,3 +152,5 @@ URxvt*color14:          #16a085
 URxvt*color7:           #ecf0f1
 URxvt*color15:          #bdc3c7
 URxvt.foreground :      #bdc3c7
+
+! vim:ft=xdefaults
