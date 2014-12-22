@@ -5,6 +5,8 @@ import XMonad hiding ( (|||) ) -- don't use the normal |||
                                -- LayoutCombinators.
 import Data.Monoid
 import System.Exit
+import System.IO
+import System.Directory
 -- We need these for the status bar, xmobar
 import XMonad.Hooks.DynamicLog -- system state
 import XMonad.Hooks.SetWMName -- Window name in status bar

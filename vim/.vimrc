@@ -78,3 +78,8 @@ endif
 "filetype plugin on
 "
 let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.swp$']
+
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif

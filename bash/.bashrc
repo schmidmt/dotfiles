@@ -62,3 +62,5 @@ for script in ${HOME}/.bashrc.d/*.sh; do
     source ${script}
   fi
 done
+
+export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '

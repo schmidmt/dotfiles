@@ -52,3 +52,15 @@
 [submodule "vim/.vim/bundle/vim-latex"]
 	path = vim/.vim/bundle/vim-latex
 	url = https://github.com/lervag/vim-latex.git
+[submodule "vim/.vim/bundle/vim-indent-guides"]
+	path = vim/.vim/bundle/vim-indent-guides
+	url = git://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "vim/.vim/bundle/bash-support.vim"]
+	path = vim/.vim/bundle/bash-support.vim
+	url = https://github.com/vim-scripts/bash-support.vim.git
+[submodule "vim/.vim/bundle/vim-puppet"]
+	path = vim/.vim/bundle/vim-puppet
+	url = git://github.com/rodjek/vim-puppet.git
+[submodule "vim/.vim/bundle/vim-ruby"]
+	path = vim/.vim/bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git
