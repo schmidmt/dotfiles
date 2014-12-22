@@ -1,0 +1,139 @@
+! Scrollbar                                                                                                                                                                                                                                                         
+URxvt.scrollStyle: rxvt                                                                                                                                                                                                                                             
+URxvt.scrollBar: false  
+
+! Fonts
+! URxvt.font:    -*-terminus-medium-r-normal-*-14-160-*-*-*-*-iso10646-*
+URxvt*font: -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
+URxvt*boldFont: -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
+URxvt*italicFont: xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
+URxvt*boldItalicFont: xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
+
+
+! Solarized color scheme for the X Window System
+!
+! http://ethanschoonover.com/solarized
+
+! Common
+
+#define S_yellow #b58900
+#define S_orange #cb4b16
+#define S_red #dc322f
+#define S_magenta #d33682
+#define S_violet #6c71c4
+#define S_blue #268bd2
+#define S_cyan #2aa198
+#define S_green #859900
+
+
+! Dark
+
+#define S_base03 #002b36
+#define S_base02 #073642
+#define S_base01 #586e75
+#define S_base00 #657b83
+#define S_base0 #839496
+#define S_base1 #93a1a1
+#define S_base2 #eee8d5
+#define S_base3 #fdf6e3
+
+
+! Light
+
+! #define S_base03 #fdf6e3
+! #define S_base02 #eee8d5
+! #define S_base01 #93a1a1
+! #define S_base00 #839496
+! #define S_base0 #657b83
+! #define S_base1 #586e75
+! #define S_base2 #073642
+! #define S_base3 #002b36
+
+
+! To only apply colors to your terminal, for example, prefix
+! the color assignment statement with its name. Example:
+!
+! URxvt*background: S_base03
+
+! URxvt*background: S_base03
+! URxvt*foreground: S_base0
+! URxvt*fading: 40
+! URxvt*fadeColor: S_base03
+! URxvt*cursorColor: S_base1
+! URxvt*pointerColorBackground: S_base01
+! URxvt*pointerColorForeground: S_base1
+! 
+! URxvt.perl-ext-common:  font-size
+! URxvt.keysym.C-Up:     perl:font-size:increase
+! URxvt.keysym.C-Down:   perl:font-size:decrease
+! URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+! URxvt.keysym.C-S-Down: perl:font-size:decglobal
+! 
+! URxvt.iso14755: false
+! URxvt.iso14755_52: false
+! 
+! *color0: S_base02
+! *color1: S_red
+! *color2: S_green
+! *color3: S_yellow
+! *color4: S_blue
+! *color5: S_magenta
+! *color6: S_cyan
+! *color7: S_base2
+! *color9: S_orange
+! *color8: S_base03
+! *color10: S_base01
+! *color11: S_base00
+! *color12: S_base0
+! *color13: S_violet
+! *color14: S_base1
+! *color15: S_base3
+
+! Xft settings ---------------------------------------------------------------
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+
+! Colors (FlatColor@https://github.com/MaxSt/FlatColor)
+
+! Midnight Blue-Black
+! URxvt*color0:           #34495e
+! URxvt*color8:           #2c3e50
+! URxvt.background :      #2c3e50
+
+! real Black
+URxvt*color0:           #2B2B2B
+URxvt*color8:           #252525
+URxvt.background :      #252525
+
+! Red
+URxvt*color1:           #FF0033
+URxvt*color9:           #C0392B
+
+! Green
+URxvt*color2:           #2ecc71
+URxvt*color10:          #27ae60
+
+! Yellow
+URxvt*color3:           #f1c40f
+URxvt*color11:          #f39c12
+
+! Blue
+URxvt*color4:           #3498db
+URxvt*color12:          #2980b9
+
+! Magenta
+URxvt*color5:           #9b59b6
+URxvt*color13:          #8e44ad
+
+! Cyan
+URxvt*color6:           #1abc9c
+URxvt*color14:          #16a085
+
+! White
+URxvt*color7:           #ecf0f1
+URxvt*color15:          #bdc3c7
+URxvt.foreground :      #bdc3c7
