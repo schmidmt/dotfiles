@@ -9,7 +9,7 @@ set history=50
 set number              
 set smartindent
 set background=dark
-colorscheme solarized
+colorscheme flatcolor
 
 filetype on " Turn on Filetype Detection
 

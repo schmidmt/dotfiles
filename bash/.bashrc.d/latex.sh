@@ -1,0 +1,2 @@
+
+export TEXMFLOCAL=$HOME/.texmf

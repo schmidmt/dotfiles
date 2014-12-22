@@ -3,5 +3,5 @@
 ## pythonpath.sh
 
 if [[ -e ~/pe ]]; then
-  pathappend ~/.pe PYTHONPATH
+  pathappend ~/pe PYTHONPATH
 fi

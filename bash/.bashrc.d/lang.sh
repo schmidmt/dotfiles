@@ -9,6 +9,8 @@ FALLBACK_LANG=C
 env -i locale --all-locales | grep -q ${DESIRED_LANG} > /dev/null 2>/dev/null
 if [[ ${?} == 0 ]]; then
   export LC_ALL=${DESIRED_LANG}
+  export LANG=${DESIRED_LANG}
 else
   export LC_ALL=${FALLBACK_LANG}
+  export LANG=${FALLBACK_LANG}
 fi
