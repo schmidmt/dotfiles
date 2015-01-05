@@ -30,7 +30,9 @@ set noswapfile
 set nobackup
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
-colorscheme flatcolor
+
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -57,10 +59,26 @@ Plugin 'groenewege/vim-less'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'moll/vim-node'
 Plugin 'davidbeckingsale/writegood.vim'
-"Plugin 'Valloric/YouCompleteMe'
-
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'gosukiwi/vim-atom-dark'
+Plugin 'MaxSt/FlatColor', {'v': '7dd1e7b3d6'}
+Plugin 'tomasr/molokai'
+Plugin 'croaky/vim-colors-github'
+Plugin 'gmarik/ingretu'
+Plugin 'vim-scripts/less.vim'
+Plugin 'vim-scripts/BusyBee'
+Plugin 'vim-scripts/proton'
+Plugin 'cseelus/vim-colors-clearance'
+Plugin 'vim-scripts/rdark-terminal'
+Plugin 'vim-scripts/miko'
+Plugin 'vim-scripts/Gentooish'
 call vundle#end()
 filetype plugin indent on
+
+let g:flatcolor_asphaltbg=0
+
+colorscheme flatcolor
+
 
 """ UtliSnips Config
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
