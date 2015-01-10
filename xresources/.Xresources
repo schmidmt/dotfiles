@@ -15,8 +15,8 @@ URxvt*scrollTtyOutput:  false
 URxvt*scrollTtyKeypress:  true
 
 ! Bells
-URxvt*urgentOnBell: false
-URxvt*visualBell: true
+URxvt*urgentOnBell: true
+URxvt*visualBell: false
 
 ! Fonts
 !urxvt*boldColors: on
