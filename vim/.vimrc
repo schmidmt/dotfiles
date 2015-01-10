@@ -34,6 +34,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -137,6 +138,7 @@ endif
 
 "" NerdTree Config
 "
+nmap <silent> <leader>tt :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.swp$']
 if has("gui_running")
   autocmd VimEnter * NERDTree
