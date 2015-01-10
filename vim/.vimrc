@@ -5,7 +5,7 @@ set nocompatible
 set autoindent
 set autoread
 set history=50
-set number              
+set number
 set smartindent
 set background=dark
 set expandtab
@@ -72,6 +72,8 @@ Plugin 'cseelus/vim-colors-clearance'
 Plugin 'vim-scripts/rdark-terminal'
 Plugin 'vim-scripts/miko'
 Plugin 'vim-scripts/Gentooish'
+Plugin 'rodjek/vim-puppet'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 filetype plugin indent on
 
@@ -79,12 +81,18 @@ let g:flatcolor_asphaltbg=0
 
 colorscheme flatcolor
 
+" From http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 
 """ UtliSnips Config
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
