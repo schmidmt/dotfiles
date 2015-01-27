@@ -1,6 +1,3 @@
-
-"execute pathogen#infect()
-
 set nocompatible
 set autoindent
 set autoread
@@ -42,39 +39,39 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'powerline/powerline',{'rtp': 'powerline/bindings/vim/'}
-Plugin 'gregsexton/MatchTag'
-Plugin 'walm/jshint.vim'
+"Plugin 'gregsexton/MatchTag'
+"Plugin 'walm/jshint.vim'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'klen/python-mode'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'pangloss/vim-javascript'
-Plugin 'lepture/vim-jinja'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'elzr/vim-json'
-Plugin 'lervag/vim-latex'
-Plugin 'groenewege/vim-less'
+"Plugin 'kchmck/vim-coffee-script'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'lepture/vim-jinja'
+"Plugin 'maksimr/vim-jsbeautify'
+"Plugin 'elzr/vim-json'
+"Plugin 'lervag/vim-latex'
+"Plugin 'groenewege/vim-less'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'moll/vim-node'
 Plugin 'davidbeckingsale/writegood.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'MaxSt/FlatColor', {'v': '7dd1e7b3d6'}
-Plugin 'tomasr/molokai'
-Plugin 'croaky/vim-colors-github'
-Plugin 'gmarik/ingretu'
-Plugin 'vim-scripts/less.vim'
-Plugin 'vim-scripts/BusyBee'
-Plugin 'vim-scripts/proton'
-Plugin 'cseelus/vim-colors-clearance'
-Plugin 'vim-scripts/rdark-terminal'
-Plugin 'vim-scripts/miko'
-Plugin 'vim-scripts/Gentooish'
+"Plugin 'tomasr/molokai'
+"Plugin 'croaky/vim-colors-github'
+"Plugin 'gmarik/ingretu'
+"Plugin 'vim-scripts/BusyBee'
+"Plugin 'vim-scripts/proton'
+"Plugin 'cseelus/vim-colors-clearance'
+"Plugin 'vim-scripts/rdark-terminal'
+"Plugin 'vim-scripts/miko'
+"Plugin 'vim-scripts/Gentooish'
 Plugin 'rodjek/vim-puppet'
 Plugin 'tpope/vim-fugitive'
+"Plugin 'sjl/splice.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -141,7 +138,7 @@ endif
 nmap <silent> <leader>tt :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.swp$']
 if has("gui_running")
-  autocmd VimEnter * NERDTree
-  autocmd VimEnter * wincmd p
+  "autocmd VimEnter * NERDTree
+  "autocmd VimEnter * wincmd p
 endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
