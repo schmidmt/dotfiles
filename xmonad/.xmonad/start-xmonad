@@ -6,6 +6,8 @@
 # Author: David Brewer
 # Repository: https://github.com/davidbrewer/xmonad-ubuntu-conf
 
+export LC_ALL=en_US.utf8
+
 #
 # GENERAL INITIALIZATION
 #

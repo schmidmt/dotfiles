@@ -56,7 +56,7 @@ Plugin 'godlygeek/tabular'
 "Plugin 'pangloss/vim-javascript'
 "Plugin 'lepture/vim-jinja'
 "Plugin 'maksimr/vim-jsbeautify'
-"Plugin 'elzr/vim-json'
+Plugin 'elzr/vim-json'
 "Plugin 'lervag/vim-latex'
 "Plugin 'groenewege/vim-less'
 Plugin 'plasticboy/vim-markdown'
@@ -113,6 +113,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+let g:snips_email='schmidmt@gmail.com'
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=utf-8,latin1
@@ -150,6 +151,10 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
 endif
+
+"" Font Config
+"
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 
 
 "" NerdTree Config
