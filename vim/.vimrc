@@ -25,8 +25,13 @@ set hlsearch
 set incsearch
 set noswapfile
 set nobackup
-set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+if has("gui_running")
+  set list
+endif
+
+"pumvisible() ? "\pumvisible" : "\
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -59,7 +64,7 @@ Plugin 'moll/vim-node'
 Plugin 'davidbeckingsale/writegood.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'gosukiwi/vim-atom-dark'
-Plugin 'MaxSt/FlatColor', {'v': '7dd1e7b3d6'}
+Plugin 'MaxSt/FlatColor'
 "Plugin 'tomasr/molokai'
 "Plugin 'croaky/vim-colors-github'
 "Plugin 'gmarik/ingretu'
@@ -72,6 +77,13 @@ Plugin 'MaxSt/FlatColor', {'v': '7dd1e7b3d6'}
 Plugin 'rodjek/vim-puppet'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'sjl/splice.vim'
+"Plugin 'Townk/vim-autoclose' "Probably Causes issues
+Plugin 'vim-scripts/a.vim'
+Plugin 'majutsushi/tagbar'
+"Plugin 'google/vim-maktaba'
+"Plugin 'google/vim-codefmtlib'
+"Plugin 'google/vim-codefmt'
+"Plugin 'google/vim-glaive'
 call vundle#end()
 filetype plugin indent on
 
@@ -84,6 +96,11 @@ colorscheme flatcolor
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
+
+"" Code Format
+"
+"call glaive#Install()
+"Glaive codefmt plugin[mappings]
 
 """ UtliSnips Config
 
@@ -137,10 +154,22 @@ endif
 
 "" NerdTree Config
 "
-nmap <silent> <leader>tt :NERDTreeToggle<CR>
+nmap <silent> <leader>nt :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.swp$']
 if has("gui_running")
   "autocmd VimEnter * NERDTree
   "autocmd VimEnter * wincmd p
 endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"" Tagbar
+"
+nmap <silent> <leader>tb :TagbarToggle<CR>
+
+
+if has("gui_running")
+  set guioptions-=m  "remove menu bar
+  set guioptions-=T  "remove toolbar
+  set guioptions-=r  "remove right-hand scroll bar
+  set guioptions-=L  "remove left-hand scroll bar
+endif
