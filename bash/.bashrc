@@ -1,4 +1,4 @@
-# /etc/skel/.bashrc
+# ~/.bashrc
 #
 # This file is sourced by all *interactive* bash shells on startup,
 # including some apparently interactive shells such as scp and rcp
@@ -10,44 +10,12 @@
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
 if [[ $- != *i* ]] ; then
-	# Shell is non-interactive.  Be done now!
-	return
+  # Shell is non-interactive.  Be done now!
+  return
 fi
 
-# Handy Helper Functions
-pathremove () {
-        local IFS=':'
-        local NEWPATH
-        local DIR
-        local PATHVARIABLE=${2:-PATH}
-        for DIR in ${!PATHVARIABLE} ; do
-                if [ "$DIR" != "$1" ] ; then
-                  NEWPATH=${NEWPATH:+$NEWPATH:}$DIR
-                fi
-        done
-        export $PATHVARIABLE="$NEWPATH"
-}
-
-pathprepend () {
-        pathremove $1 $2
-        local PATHVARIABLE=${2:-PATH}
-        export $PATHVARIABLE="$1${!PATHVARIABLE:+:${!PATHVARIABLE}}"
-}
-
-pathappend () {
-        pathremove $1 $2
-        local PATHVARIABLE=${2:-PATH}
-        export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
-}
-
-export -f pathremove pathprepend pathappend
-
-
-# Colors
-NORMAL="\[\e[0m\]"
-RED="\[\e[1;31m\]"
-GREEN="\[\e[1;32m\]"
-
+# Load Library of helper functions and constants
+source ~/.bashrc_lib
 
 # Load Environment Name to load specific shell files
 if [[ -e ${HOME}/.bash_env ]]; then
@@ -63,4 +31,45 @@ for script in ${HOME}/.bashrc.d/*.sh; do
   fi
 done
 
-export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+# GIT_PS1 Options
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWCOLORHINTS=1
+
+function __hostname_color() {
+  declare -a hostcolors
+
+  hostcolors+=( "\[\033[1;31m\]" )
+  hostcolors+=( "\[\033[1;32m\]" )
+  hostcolors+=( "\[\033[1;33m\]" )
+  hostcolors+=( "\[\033[1;34m\]" )
+  hostcolors+=( "\[\033[1;35m\]" )
+  hostcolors+=( "\[\033[1;36m\]" )
+
+  md5=$(hostname | md5sum | cut -d' ' -f1)
+  dec_md5=$((16#${md5}))
+  abs_dec_md5=${dec_md5#-}
+  color_num=$(($abs_dec_md5 % ${#hostcolors[@]} ))
+  echo ${hostcolors[${color_num}]}
+}
+
+
+function _update_ps1() {
+  PREV_RET_VAL=$?
+  PS1="${BGreen}\u@$(__hostname_color)\H"
+  if (( $(jobs | wc -l) > 0 )); then
+    PS1="${PS1} ${BRed}(${Jobs})"
+  fi
+  PS1="${PS1}${BYellow}$(__git_ps1 " (%s)")"
+  PS1="${PS1}${BBlue} ${PathShort}"
+  if (( ${PREV_RET_VAL} > 0)); then
+    PS1="${PS1} ${On_IRed}\$${Color_Off} "
+  else
+    PS1="${PS1} \$${Color_Off} "
+  fi
+
+  export PS1
+}
+export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+
