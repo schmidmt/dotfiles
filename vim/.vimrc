@@ -97,6 +97,12 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 
+"" Pymode
+"
+let g:pymode_rope=0
+let g:pymode_doc=0
+
+
 "" Code Format
 "
 "call glaive#Install()
