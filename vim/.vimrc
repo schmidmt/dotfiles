@@ -89,7 +89,11 @@ filetype plugin indent on
 
 let g:flatcolor_asphaltbg=0
 
-colorscheme flatcolor
+if has("gui_running")
+  colorscheme flatcolor
+else
+  colorscheme default
+endif
 
 " From http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
 " make YCM compatible with UltiSnips (using supertab)
