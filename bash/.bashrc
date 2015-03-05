@@ -58,11 +58,11 @@ function __hostname_color() {
 function _update_ps1() {
   PREV_RET_VAL=$?
   PS1="${BGreen}\u@$(__hostname_color)\H"
+  PS1="${PS1}${BBlue}:${PathShort}"
   if (( $(jobs | wc -l) > 0 )); then
     PS1="${PS1} ${BRed}(${Jobs})"
   fi
   PS1="${PS1}${BYellow}$(__git_ps1 " (%s)")"
-  PS1="${PS1}${BBlue} ${PathShort}"
   if (( ${PREV_RET_VAL} > 0)); then
     PS1="${PS1} ${On_IRed}\$${Color_Off} "
   else
