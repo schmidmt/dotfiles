@@ -1,3 +1,81 @@
+" vim: set foldmethod=marker foldlevel=0:
+" =============================================================================
+" Schmidmt's .vimrc {{{
+" =============================================================================
+
+
+" }}}
+" =============================================================================
+" Plugins Block {{{
+" =============================================================================
+
+filetype off
+silent! if plug#begin('~/.vim/plugged')
+
+" Colors
+Plug 'MaxSt/FlatColor'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'gosukiwi/vim-atom-dark'
+"Plug 'tomasr/molokai'
+"Plug 'croaky/vim-colors-github'
+"Plug 'cseelus/vim-colors-clearance'
+"Plug 'vim-scripts/rdark-terminal'
+"Plug 'vim-scripts/miko'
+"Plug 'vim-scripts/Gentooish'
+
+" Edit
+Plug 'tpope/vim-abolish'
+Plug 'davidbeckingsale/writegood.vim'
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+Plug 'scrooloose/nerdcommenter'
+Plug 'terryma/vim-multiple-cursors'
+
+" Git
+Plug 'tpope/vim-fugitive'
+
+" Lang
+Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+"Plug 'JuliaLang/julia-vim', {'for': 'julia'}
+Plug 'rodjek/vim-puppet', {'for': 'puppet'}
+Plug 'lervag/vim-latex'
+Plug 'moll/vim-node'
+Plug 'groenewege/vim-less'
+Plug 'pangloss/vim-javascript'
+Plug 'kchmck/vim-coffee-script'
+Plug 'plasticboy/vim-markdown'
+Plug 'slim-template/vim-slim'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'wting/rust.vim'
+Plug 'tpope/vim-rails',      { 'for': []      }
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+Plug 'honza/dockerfile.vim'
+Plug 'solarnz/thrift.vim'
+Plug 'chikamichi/mediawiki.vim'
+
+" Code Management
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+"Plug 'gregsexton/MatchTag'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+"Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'scrooloose/syntastic'
+Plug 'godlygeek/tabular'
+if v:version >= 703
+  Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+endif
+Plug 'vim-scripts/a.vim'
+Plug 'Valloric/YouCompleteMe'
+
+call plug#end()
+endif
+
+" }}}
+" =============================================================================
+" Basic Settings {{{
+" =============================================================================
+
 set nocompatible
 set autoindent
 set autoread
@@ -31,99 +109,20 @@ if has("gui_running")
   set list
 endif
 
-"pumvisible() ? "\pumvisible" : "\
-
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'powerline/powerline',{'rtp': 'powerline/bindings/vim/'}
-"Plugin 'gregsexton/MatchTag'
-"Plugin 'walm/jshint.vim'
-Plugin 'JuliaLang/julia-vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'klen/python-mode'
-Plugin 'scrooloose/syntastic'
-Plugin 'godlygeek/tabular'
-"Plugin 'kchmck/vim-coffee-script'
-"Plugin 'altercation/vim-colors-solarized'
-"Plugin 'pangloss/vim-javascript'
-"Plugin 'lepture/vim-jinja'
-"Plugin 'maksimr/vim-jsbeautify'
-Plugin 'elzr/vim-json'
-"Plugin 'lervag/vim-latex'
-"Plugin 'groenewege/vim-less'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'moll/vim-node'
-Plugin 'davidbeckingsale/writegood.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'gosukiwi/vim-atom-dark'
-Plugin 'MaxSt/FlatColor'
-"Plugin 'tomasr/molokai'
-"Plugin 'croaky/vim-colors-github'
-"Plugin 'gmarik/ingretu'
-"Plugin 'vim-scripts/BusyBee'
-"Plugin 'vim-scripts/proton'
-"Plugin 'cseelus/vim-colors-clearance'
-"Plugin 'vim-scripts/rdark-terminal'
-"Plugin 'vim-scripts/miko'
-"Plugin 'vim-scripts/Gentooish'
-Plugin 'rodjek/vim-puppet'
-Plugin 'tpope/vim-fugitive'
-"Plugin 'sjl/splice.vim'
-"Plugin 'Townk/vim-autoclose' "Probably Causes issues
-Plugin 'vim-scripts/a.vim'
-Plugin 'majutsushi/tagbar'
-"Plugin 'google/vim-maktaba'
-"Plugin 'google/vim-codefmtlib'
-"Plugin 'google/vim-codefmt'
-"Plugin 'google/vim-glaive'
-call vundle#end()
+
 filetype plugin indent on
 
 let g:flatcolor_asphaltbg=0
 
 if has("gui_running")
-  colorscheme flatcolor
+  silent! colorscheme flatcolor
 else
-  colorscheme default
+  silent! colorscheme default
 endif
-
-" From http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
-
-"" Pymode
-"
-let g:pymode_rope=0
-let g:pymode_doc=0
-
-
-"" Code Format
-"
-"call glaive#Install()
-"Glaive codefmt plugin[mappings]
-
-""" UtliSnips Config
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-let g:snips_email='schmidmt@gmail.com'
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=utf-8,latin1
@@ -140,6 +139,12 @@ if has("autocmd")
   \ endif
 endif
 
+
+" }}}
+" =============================================================================
+" CScope Config {{{
+" =============================================================================
+
 if has("cscope") && filereadable("/usr/bin/cscope")
    set csprg=/usr/bin/cscope
    set csto=0
@@ -155,6 +160,11 @@ if has("cscope") && filereadable("/usr/bin/cscope")
    set csverb
 endif
 
+" }}}
+" =============================================================================
+" Hilighting Config {{{
+" =============================================================================
+
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -162,13 +172,149 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-"" Font Config
-"
-set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
+" }}}
+" =============================================================================
+" GUI Config {{{
+" =============================================================================
+if has("gui_running")
+  set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
+  set guioptions-=m  "remove menu bar
+  set guioptions-=T  "remove toolbar
+  set guioptions-=r  "remove right-hand scroll bar
+  set guioptions-=L  "remove left-hand scroll bar
+endif
 
+" }}}
+" =============================================================================
+" Helpful Mappings {{{
+" =============================================================================
 
-"" NerdTree Config
-"
+" ----------------------------------------------------------------------------
+" Syntax highlighting in code snippets
+" ----------------------------------------------------------------------------
+function! s:syntax_include(lang, b, e, inclusive)
+  let syns = split(globpath(&rtp, "syntax/".a:lang.".vim"), "\n")
+  if empty(syns)
+    return
+  endif
+
+  if exists('b:current_syntax')
+    let csyn = b:current_syntax
+    unlet b:current_syntax
+  endif
+
+  let z = "'" " Default
+  for nr in range(char2nr('a'), char2nr('z'))
+    let char = nr2char(nr)
+    if a:b !~ char && a:e !~ char
+      let z = char
+      break
+    endif
+  endfor
+
+  silent! exec printf("syntax include @%s %s", a:lang, syns[0])
+  if a:inclusive
+    exec printf('syntax region %sSnip start=%s\(%s\)\@=%s ' .
+                \ 'end=%s\(%s\)\@<=\(\)%s contains=@%s containedin=ALL',
+                \ a:lang, z, a:b, z, z, a:e, z, a:lang)
+  else
+    exec printf('syntax region %sSnip matchgroup=Snip start=%s%s%s ' .
+                \ 'end=%s%s%s contains=@%s containedin=ALL',
+                \ a:lang, z, a:b, z, z, a:e, z, a:lang)
+  endif
+
+  if exists('csyn')
+    let b:current_syntax = csyn
+  endif
+endfunction
+
+function! s:file_type_handler()
+  if &ft =~ 'jinja' && &ft != 'jinja'
+    call s:syntax_include('jinja', '{{', '}}', 1)
+    call s:syntax_include('jinja', '{%', '%}', 1)
+  elseif &ft == 'mkd' || &ft == 'markdown'
+    let map = { 'bash': 'sh' }
+    for lang in ['ruby', 'yaml', 'vim', 'sh', 'bash', 'python', 'java', 'c', 'sql', 'gnuplot']
+      call s:syntax_include(get(map, lang, lang), '```'.lang, '```', 0)
+    endfor
+
+    highlight def link Snip Folded
+
+    setlocal textwidth=78
+    setlocal completefunc=emoji#complete
+  elseif &ft == 'sh'
+    call s:syntax_include('ruby', '#!ruby', '/\%$', 1)
+  endif
+endfunction
+
+" ----------------------------------------------------------------------------
+" :Chomp
+" ----------------------------------------------------------------------------
+command! Chomp silent! normal! :%s/\s\+$//<cr>
+
+" ----------------------------------------------------------------------------
+" :Root | Change directory to the root of the Git repository
+" ----------------------------------------------------------------------------
+function! s:root()
+  let me = expand('%:p:h')
+  let gitd = finddir('.git', me.';')
+  if empty(gitd)
+    echo "Not in git repo"
+  else
+    let gitp = fnamemodify(gitd, ':h')
+    echo "Change directory to: ".gitp
+    execute 'lcd' gitp
+  endif
+endfunction
+command! Root call s:root()
+
+" ----------------------------------------------------------------------------
+" Todo
+" ----------------------------------------------------------------------------
+function! s:todo() abort
+  let entries = []
+  for cmd in ['git grep -n -e TODO -e FIXME -e XXX 2> /dev/null',
+            \ 'grep -rn -e TODO -e FIXME -e XXX * 2> /dev/null']
+    let lines = split(system(cmd), '\n')
+    if v:shell_error != 0 | continue | endif
+    for line in lines
+      let [fname, lno, text] = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')[1:3]
+      call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
+    endfor
+    break
+  endfor
+
+  if !empty(entries)
+    call setqflist(entries)
+    copen
+  endif
+endfunction
+command! Todo call s:todo()
+
+" }}}
+" =============================================================================
+" Plugins {{{
+" =============================================================================
+
+" ----------------------------------------------------------------------------
+" matchit.vim
+" ----------------------------------------------------------------------------
+runtime macros/matchit.vim
+
+" ----------------------------------------------------------------------------
+" undotree
+" ----------------------------------------------------------------------------
+let g:undotree_WindowLayout = 2
+nnoremap U :UndotreeToggle<CR>
+
+" ----------------------------------------------------------------------------
+" vim-markdown
+" ----------------------------------------------------------------------------
+let g:vim_markdown_initial_foldlevel = &foldlevelstart
+
+" ----------------------------------------------------------------------------
+" NERDTree Config
+" ----------------------------------------------------------------------------
 nmap <silent> <leader>nt :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.swp$']
 if has("gui_running")
@@ -177,14 +323,38 @@ if has("gui_running")
 endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-"" Tagbar
-"
+" ----------------------------------------------------------------------------
+" TagBar Config
+" ----------------------------------------------------------------------------
 nmap <silent> <leader>tb :TagbarToggle<CR>
 
+" ----------------------------------------------------------------------------
+" UtliSnips Config
+" ----------------------------------------------------------------------------
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-if has("gui_running")
-  set guioptions-=m  "remove menu bar
-  set guioptions-=T  "remove toolbar
-  set guioptions-=r  "remove right-hand scroll bar
-  set guioptions-=L  "remove left-hand scroll bar
-endif
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:snips_email='schmidmt@gmail.com'
+
+" ----------------------------------------------------------------------------
+" YCM Controls
+" ----------------------------------------------------------------------------
+" From http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+" ----------------------------------------------------------------------------
+" Pymode Controls
+" ----------------------------------------------------------------------------
+let g:pymode_rope=0
+let g:pymode_doc=0
+let g:pymode_lint_ignore='W0142'
+let g:pymode_lint_config = '$HOME/.pylint.rc'
+
+
+" }}}

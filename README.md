@@ -8,7 +8,12 @@ stow vim
 
 ## VIM
 For __vim__, run the following to install and build the plugins.
+Install the plugin manager:
+```
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
 
-`vim +PluginInstall +qall`
+`vim +PlugInstall +qall`
 
 `(cd .vim/bundle/YouCompleteMe/; ./install.sh --clang-completer)`

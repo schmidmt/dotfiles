@@ -1,15 +1,15 @@
 
 xterm*utf8: 2
 
-! Scrollbar                                                                                                                                                                                                                                                         
-URxvt.scrollStyle: rxvt                                                                                                                                                                                                                                             
-URxvt.scrollBar: false  
+! Scrollbar
+URxvt.scrollStyle: rxvt
+URxvt.scrollBar: false
 
 ! Save Lines (using screen, need none)
 URxvt*saveLines:  0
 
 ! Little Fading
-URxvt*fading:  30
+! URxvt*fading:  30
 
 ! Spip Unnecessary Scrolling
 URxvt*skipScroll:  true
@@ -81,16 +81,16 @@ URxvt*font: xft:Ubuntu Mono derivative Powerline:pixlesize=12
 ! URxvt*cursorColor: S_base1
 ! URxvt*pointerColorBackground: S_base01
 ! URxvt*pointerColorForeground: S_base1
-! 
-! URxvt.perl-ext-common:  font-size
-! URxvt.keysym.C-Up:     perl:font-size:increase
-! URxvt.keysym.C-Down:   perl:font-size:decrease
-! URxvt.keysym.C-S-Up:   perl:font-size:incglobal
-! URxvt.keysym.C-S-Down: perl:font-size:decglobal
-! 
+!
+URxvt.perl-ext-common:  font-size
+URxvt.keysym.C-Up:      perl:font-size:increase
+URxvt.keysym.C-Down:    perl:font-size:decrease
+URxvt.keysym.C-S-Up:    perl:font-size:incglobal
+URxvt.keysym.C-S-Down:  perl:font-size:decglobal
+!
 ! URxvt.iso14755: false
 ! URxvt.iso14755_52: false
-! 
+!
 ! *color0: S_base02
 ! *color1: S_red
 ! *color2: S_green
