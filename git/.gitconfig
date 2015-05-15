@@ -1,0 +1,21 @@
+[user]
+	email = mschmidt@exegy.com
+	name = Mike Schmidt
+[push]
+	default = simple
+[alias]
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  cur = rev-parse --short=0 HEAD
+
+#[merge]
+#  tool = splice
+
+#[mergetool "splice"]
+#  cmd = "gvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+#  trustExitCode = true
+[mergetool "fugitive"]
+	cmd = gvim -f -c \"Gvdiff\" \"$MERGED\"
+[merge]
+	tool = fugitive
+[rerere]
+	enabled = true
