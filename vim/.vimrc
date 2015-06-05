@@ -29,6 +29,8 @@ Plug 'davidbeckingsale/writegood.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'suan/vim-instant-markdown'
+"Plug 'xuhdev/vim-latex-live-preview'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -53,6 +55,7 @@ Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'honza/dockerfile.vim'
 Plug 'solarnz/thrift.vim'
 Plug 'chikamichi/mediawiki.vim'
+Plug 'keith/tmux.vim'
 
 " Code Management
 Plug 'SirVer/ultisnips'
