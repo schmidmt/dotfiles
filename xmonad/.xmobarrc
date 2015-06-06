@@ -1,3 +1,5 @@
+-- vim: ft=haskell:
+
 Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
        , bgColor = "black"
        , fgColor = "grey"
@@ -6,10 +8,11 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     , Run Memory ["-t","M: <usedratio>%"] 10
                     , Run Swap ["-t", "S:<usedratio>%"] 10
                     , Run Date "%a %b %_d %l:%M:%S" "date" 10
+                    , Run DateZone "%H%MZ" "us_EN.UTF-8" "UTC" "UTC" 10
                     , Run StdinReader
                     , Run CpuFreq["-t", "<cpu0>", "-L", "0", "-H", "2","-l", "lightblue", "-n","white", "-h", "red" ] 50
                     , Run ThermalZone 0 ["-t","<temp>C", "-L", "50", "-H", "70","-l", "lightblue", "-n","white", "-h", "red"] 50
-                    , Run BatteryP ["BAT0"] 
+                    , Run BatteryP ["BAT0"]
                                   ["-t", "<acstatus> <watts>W <left>%/<timeleft>",
                                   "-L", "10", "-H", "80", "-p", "3",
                                   "--",
@@ -26,5 +29,5 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %dynnetwork% | %multicpu% (%thermal0%) | %memory%  %swap% | %battery% | <fc=#ee9a00>%date%</fc> |"
+       , template = "%StdinReader% }{ %dynnetwork% | %multicpu% (%thermal0%) | %memory%  %swap% | %battery% | <fc=#ee9a00>%date%</fc>  ( %UTC% )|"
        }

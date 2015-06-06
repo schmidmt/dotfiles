@@ -22,6 +22,7 @@ Plug 'MaxSt/FlatColor'
 "Plug 'vim-scripts/rdark-terminal'
 "Plug 'vim-scripts/miko'
 "Plug 'vim-scripts/Gentooish'
+Plug 'NLKNguyen/papercolor-theme'
 
 " Edit
 Plug 'tpope/vim-abolish'
