@@ -34,8 +34,6 @@ import XMonad.Layout.LayoutCombinators
 -- Talks to DBUS and tells me when a program wants my attention
 import XMonad.Hooks.UrgencyHook
 
--- Stuff I stole from Isaac
-
 -- For GridSelect
 import XMonad.Actions.GridSelect
 -- Window mover popup
@@ -48,6 +46,13 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Roledex
 -- For being able to resize non-master windows
 import XMonad.Layout.ResizableTile
+
+-- Add Instant Messenger (IM) Layout
+import XMonad.Layout.IM
+import Data.Ratio ((%))
+
+-- Add grid layout
+import XMonad.Layout.Grid
 
 -- I don't know what these do. I think they're required by other modules.
 import qualified XMonad.StackSet as W
@@ -335,7 +340,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     -- $ tiled ||| Mirror tiled ||| noBorders Full
      --     tiled   = Tall nmaster delta ratio
 myLayout =  avoidStruts $ smartBorders
-           $ tiled ||| spir ||| cycle ||| full
+           $ withIM (1%7) (Role "buddy_list")
+           $ tiled ||| spir ||| cycle ||| full ||| Grid
 
   where
      -- default tiling algorithm partitions the screen into two panes
