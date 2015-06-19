@@ -1,5 +1,3 @@
--- vim: ft=haskell:
-
 Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
        , bgColor = "black"
        , fgColor = "grey"
@@ -14,20 +12,21 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     , Run ThermalZone 0 ["-t","<temp>C", "-L", "50", "-H", "70","-l", "lightblue", "-n","white", "-h", "red"] 50
                     , Run BatteryP ["BAT0"]
                                   ["-t", "<acstatus> <watts>W <left>%/<timeleft>",
-                                  "-L", "10", "-H", "80", "-p", "3",
-                                  "--",
-                                  "-O", "<fc=green>Charging</fc>",
-                                  "-o", "",
-                                  "-i", "<fc=green>AC IDLE</fc>",
-                                  "-L", "-15",
-                                  "-H", "-5",
-                                  "-l", "red",
-                                  "-m", "blue",
-                                  "-h", "green"]
+                                   "-L", "10", "-H", "80", "-p", "3",
+                                   "--",
+                                   "-O", "<fc=green>Charging</fc>",
+                                   "-o", "",
+                                   "-i", "<fc=green>AC IDLE</fc>",
+                                   "-L", "-15",
+                                   "-H", "-5",
+                                   "-l", "red",
+                                   "-m", "blue",
+                                   "-h", "green"]
                                   50
                     , Run DynNetwork [] 10
+                    , Run Com "~/.xmonad/xmobar-load" [] "load" 100
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %dynnetwork% | %multicpu% (%thermal0%) | %memory%  %swap% | %battery% | <fc=#ee9a00>%date%</fc>  ( %UTC% )|"
+       , template = "%StdinReader% }{ %dynnetwork% | %multicpu% (%load%) (%thermal0%) | %memory%  %swap% | %battery% | <fc=#ee9a00>%date%</fc>  ( %UTC% )|"
        }
