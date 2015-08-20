@@ -22,7 +22,7 @@ Plug 'MaxSt/FlatColor'
 "Plug 'vim-scripts/rdark-terminal'
 "Plug 'vim-scripts/miko'
 "Plug 'vim-scripts/Gentooish'
-Plug 'NLKNguyen/papercolor-theme'
+"Plug 'NLKNguyen/papercolor-theme'
 
 " Edit
 Plug 'tpope/vim-abolish'
@@ -30,7 +30,7 @@ Plug 'davidbeckingsale/writegood.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'suan/vim-instant-markdown'
+Plug 'suan/vim-instant-markdown', {'for': 'mkd'}
 "Plug 'xuhdev/vim-latex-live-preview'
 
 " Git
@@ -39,24 +39,27 @@ Plug 'tpope/vim-fugitive'
 " Lang
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'klen/python-mode', { 'for': 'python' }
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
 "Plug 'JuliaLang/julia-vim', {'for': 'julia'}
 Plug 'rodjek/vim-puppet', {'for': 'puppet'}
 Plug 'lervag/vim-latex'
-Plug 'moll/vim-node'
-Plug 'groenewege/vim-less'
-Plug 'pangloss/vim-javascript'
-Plug 'kchmck/vim-coffee-script'
-Plug 'plasticboy/vim-markdown'
+Plug 'moll/vim-node', {'for': 'node'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'slim-template/vim-slim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'wting/rust.vim'
 Plug 'tpope/vim-rails',      { 'for': []      }
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-Plug 'honza/dockerfile.vim'
+Plug 'honza/dockerfile.vim', {'for': 'dockerfile'}
 Plug 'solarnz/thrift.vim'
-Plug 'chikamichi/mediawiki.vim'
-Plug 'keith/tmux.vim'
+Plug 'chikamichi/mediawiki.vim', {'for': 'wiki'}
+Plug 'keith/tmux.vim', {'for': 'tmux'}
+Plug 'dag/vim-fish', {'for': 'fish'}
+Plug 'uarun/vim-protobuf'
+Plug 'digitaltoad/vim-jade', {'for': 'jade'}
+Plug 'adimit/prolog.vim', {'for': 'prolog'}
+Plug 'fatih/vim-go'
 
 " Code Management
 Plug 'SirVer/ultisnips'
@@ -71,6 +74,9 @@ if v:version >= 703
 endif
 Plug 'vim-scripts/a.vim'
 Plug 'Valloric/YouCompleteMe'
+
+" Written Language Tools
+Plug 'vim-scripts/LanguageTool'
 
 call plug#end()
 endif
@@ -87,11 +93,7 @@ set history=50
 set number
 set smartindent
 set background=dark
-set expandtab
-set tabstop=2
-set shiftwidth=2
 set nowrap
-set colorcolumn=80
 set bs=indent,eol,start
 set viminfo='20,\"50
 set history=50
@@ -107,7 +109,7 @@ set hlsearch
 set incsearch
 set noswapfile
 set nobackup
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.,eol:¬
 
 if has("gui_running")
   set list
@@ -115,8 +117,6 @@ endif
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
-
 
 filetype plugin indent on
 
@@ -360,5 +360,9 @@ let g:pymode_doc=0
 let g:pymode_lint_ignore='W0142'
 let g:pymode_lint_config = '$HOME/.pylint.rc'
 
+" ----------------------------------------------------------------------------
+" LanguageTool
+" ----------------------------------------------------------------------------
+let g:languagetool_jar='/home/schmidmt/LanguageTool-3.0/languagetool-commandline.jar'
 
 " }}}
