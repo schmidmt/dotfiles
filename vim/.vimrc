@@ -32,6 +32,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'suan/vim-instant-markdown', {'for': 'mkd'}
 "Plug 'xuhdev/vim-latex-live-preview'
+Plug 'unblevable/quick-scope'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -60,12 +61,16 @@ Plug 'uarun/vim-protobuf'
 Plug 'digitaltoad/vim-jade', {'for': 'jade'}
 Plug 'adimit/prolog.vim', {'for': 'prolog'}
 Plug 'fatih/vim-go'
+Plug 'chikamichi/mediawiki.vim'
+Plug 'keith/tmux.vim'
+Plug 'bhilburn/kernel-coding-style'
 
 " Code Management
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 "Plug 'gregsexton/MatchTag'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'albfan/nerdtree-git-plugin'
 "Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
@@ -110,6 +115,8 @@ set incsearch
 set noswapfile
 set nobackup
 set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.,eol:¬
+set wildmode=longest,list,full
+set wildmenu
 
 if has("gui_running")
   set list
@@ -117,6 +124,13 @@ endif
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+"Disable arrow keys
+
+"noremap <Up> <NOP>
+"noremap <Down> <NOP>
+"noremap <Left> <NOP>
+"noremap <Right> <NOP>
 
 filetype plugin indent on
 
