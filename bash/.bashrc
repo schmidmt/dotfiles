@@ -1,4 +1,5 @@
 # ~/.bashrc
+# vim:set et sts=0 sw=2 ts=2:
 #
 # This file is sourced by all *interactive* bash shells on startup,
 # including some apparently interactive shells such as scp and rcp
@@ -61,6 +62,10 @@ function _update_ps1() {
   PS1="${PS1}${BBlue}:${PathShort}"
   if (( $(jobs | wc -l) > 0 )); then
     PS1="${PS1} ${BRed}(${Jobs})"
+  fi
+  if [ ! -z "$VIRTUAL_ENV" ]; then
+    VE_NAME=$(basename "${VIRTUAL_ENV}")
+    PS1="${PS1}${BYellow} (${VE_NAME})"
   fi
   PS1="${PS1}${BYellow}$(__git_ps1 " (%s)")"
   if (( ${PREV_RET_VAL} > 0)); then
