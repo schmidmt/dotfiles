@@ -40,8 +40,8 @@ xcompmgr -n &
 
 # Activate primary screen 
 #xrandr --output LVDS-1 --auto --primary
-xrandr --output DisplayPort-3 --auto --primary
-xrandr --output DisplayPort-2 --right-of DisplayPort-3
+xrandr --output DisplayPort-2 --auto --primary
+xrandr --output DisplayPort-3 --right-of DisplayPort-2
 
 
 
