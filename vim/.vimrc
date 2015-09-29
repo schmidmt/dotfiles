@@ -399,6 +399,7 @@ let g:languagetool_jar='/home/schmidmt/LanguageTool-3.0/languagetool-commandline
 " ----------------------------------------------------------------------------
 " Goyo
 " ----------------------------------------------------------------------------
+
 function! s:goyo_enter()
   silent !tmux set status off
   set noshowmode
@@ -407,7 +408,6 @@ function! s:goyo_enter()
   Limelight
   if has('gui_running')
     set fullscreen
-    set background=dark
     set linespace=7
   elseif exists('$TMUX')
     silent !tmux set status off
@@ -422,7 +422,6 @@ function! s:goyo_leave()
   Limelight!
   if has('gui_running')
     set nofullscreen
-    set background=dark
     set linespace=0
   elseif exists('$TMUX')
     silent !tmux set status on
@@ -431,6 +430,5 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
 
 " }}}
