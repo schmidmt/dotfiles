@@ -33,6 +33,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'suan/vim-instant-markdown', {'for': 'mkd'}
 "Plug 'xuhdev/vim-latex-live-preview'
 Plug 'unblevable/quick-scope'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -79,6 +81,7 @@ if v:version >= 703
 endif
 Plug 'vim-scripts/a.vim'
 Plug 'Valloric/YouCompleteMe'
+Plug 'unblevable/quick-scope'
 
 " Written Language Tools
 Plug 'vim-scripts/LanguageTool'
@@ -124,6 +127,7 @@ endif
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>ef :Ftedit()<CR>
 
 "Disable arrow keys
 
@@ -200,6 +204,8 @@ if has("gui_running")
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
+  set guioptions-=e  "Remove tabs
+  set guiheadroom=0
 endif
 
 " }}}
@@ -309,6 +315,17 @@ function! s:todo() abort
 endfunction
 command! Todo call s:todo()
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            filetype quick edit                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! s:ftedit()
+  let ftfile = $HOME."/.vim/ftplugin/".&filetype.".vim"
+  execute "split" . ftfile
+endfunction
+command! Ftedit call s:ftedit()
+
+
 " }}}
 " =============================================================================
 " Plugins {{{
@@ -378,5 +395,42 @@ let g:pymode_lint_config = '$HOME/.pylint.rc'
 " LanguageTool
 " ----------------------------------------------------------------------------
 let g:languagetool_jar='/home/schmidmt/LanguageTool-3.0/languagetool-commandline.jar'
+
+" ----------------------------------------------------------------------------
+" Goyo
+" ----------------------------------------------------------------------------
+function! s:goyo_enter()
+  silent !tmux set status off
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  Limelight
+  if has('gui_running')
+    set fullscreen
+    set background=dark
+    set linespace=7
+  elseif exists('$TMUX')
+    silent !tmux set status off
+  endif
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  set showmode
+  set showcmd
+  set scrolloff=5
+  Limelight!
+  if has('gui_running')
+    set nofullscreen
+    set background=dark
+    set linespace=0
+  elseif exists('$TMUX')
+    silent !tmux set status on
+  endif
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 
 " }}}
