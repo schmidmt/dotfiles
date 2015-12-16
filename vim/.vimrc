@@ -30,7 +30,7 @@ Plug 'davidbeckingsale/writegood.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'suan/vim-instant-markdown', {'for': 'mkd'}
+Plug 'suan/vim-instant-markdown'
 "Plug 'xuhdev/vim-latex-live-preview'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/goyo.vim'
@@ -66,6 +66,7 @@ Plug 'fatih/vim-go'
 Plug 'chikamichi/mediawiki.vim'
 Plug 'keith/tmux.vim'
 Plug 'bhilburn/kernel-coding-style'
+Plug 'vim-ruby/vim-ruby'
 
 " Code Management
 Plug 'SirVer/ultisnips'
@@ -81,6 +82,7 @@ if v:version >= 703
 endif
 Plug 'vim-scripts/a.vim'
 Plug 'Valloric/YouCompleteMe'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'unblevable/quick-scope'
 
 " Written Language Tools

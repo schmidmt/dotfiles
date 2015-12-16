@@ -47,10 +47,6 @@ import XMonad.Layout.Roledex
 -- For being able to resize non-master windows
 import XMonad.Layout.ResizableTile
 
--- Add Instant Messenger (IM) Layout
-import XMonad.Layout.IM
-import Data.Ratio ((%))
-
 -- Add grid layout
 import XMonad.Layout.Grid
 
@@ -340,7 +336,6 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     -- $ tiled ||| Mirror tiled ||| noBorders Full
      --     tiled   = Tall nmaster delta ratio
 myLayout =  avoidStruts $ smartBorders
-           $ withIM (1%7) (Role "buddy_list")
            $ tiled ||| spir ||| cycle ||| full ||| Grid
 
   where
@@ -397,7 +392,6 @@ myManageHook = composeAll
     , className =? "Firefox" <&&> resource =? "Dialog" --> doFloat
     , className =? "Terminator" --> doF W.swapDown >> doIgnore -- make terminator a background thing
 --    , className =? "LilyTerm" --> doF W.swapDown >> doIgnore -- make lilyterm a background thing
-    , className =? "Pidgin" --> doShift "chat" -- send Pidgin to WS 9
     , className =? "Thunderbird" --> doShift "email" -- send Thunderbird to WS 8
     ]
 

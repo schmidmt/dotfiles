@@ -6,3 +6,4 @@ ipython/.ipython/profile_default/history.sqlite
 vim/.vim/bundle/*
 vim/.vim/autoload
 vim/.vim/plugged
+vim/.vim/.netrwhist
