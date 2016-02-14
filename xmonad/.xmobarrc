@@ -24,7 +24,7 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                                    "-h", "green"]
                                   50
                     , Run DynNetwork [] 10
-                    , Run Com "/home/mschmidt/.xmonad/xmobar-load" [] "load" 100
+                    , Run Com "/home/schmidmt/.xmonad/xmobar-load" [] "load" 100
                     ]
        , sepChar = "%"
        , alignSep = "}{"

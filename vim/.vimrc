@@ -67,6 +67,7 @@ Plug 'chikamichi/mediawiki.vim'
 Plug 'keith/tmux.vim'
 Plug 'bhilburn/kernel-coding-style'
 Plug 'vim-ruby/vim-ruby'
+Plug 'wavded/vim-stylus'
 
 " Code Management
 Plug 'SirVer/ultisnips'
@@ -87,6 +88,10 @@ Plug 'unblevable/quick-scope'
 
 " Written Language Tools
 Plug 'vim-scripts/LanguageTool'
+
+" Misc
+Plug 'mhinz/vim-rfc'
+Plug 'tpope/vim-sleuth'
 
 call plug#end()
 endif

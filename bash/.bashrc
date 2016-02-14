@@ -15,6 +15,9 @@ if [[ $- != *i* ]] ; then
   return
 fi
 
+# Set the editor to vim
+EDITOR=vim
+
 # Load Library of helper functions and constants
 source ~/.bashrc_lib
 
@@ -59,14 +62,21 @@ function __hostname_color() {
 function _update_ps1() {
   PREV_RET_VAL=$?
   PS1="${BGreen}\u@$(__hostname_color)\H"
-  PS1="${PS1}${BBlue}:${PathShort}"
+  PS1="${PS1}${BBlue}:${PathShort} "
   if (( $(jobs | wc -l) > 0 )); then
-    PS1="${PS1} ${BRed}(${Jobs})"
+    PS1="${PS1}${BRed}(${Jobs})"
   fi
+
   if [ ! -z "$VIRTUAL_ENV" ]; then
     VE_NAME=$(basename "${VIRTUAL_ENV}")
     PS1="${PS1}${BYellow} (${VE_NAME})"
   fi
+  _set_node_bin
+
+  if [ ! -z "$NODE_BIN" ]; then
+    PS1="${PS1}${BGreen}(N)"
+  fi
+
   PS1="${PS1}${BYellow}$(__git_ps1 " (%s)")"
   if (( ${PREV_RET_VAL} > 0)); then
     PS1="${PS1} ${On_IRed}\$${Color_Off} "

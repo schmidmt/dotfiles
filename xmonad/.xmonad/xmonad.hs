@@ -47,6 +47,10 @@ import XMonad.Layout.Roledex
 -- For being able to resize non-master windows
 import XMonad.Layout.ResizableTile
 
+-- Add Instant Messenger (IM) Layout
+--import XMonad.Layout.IM
+--import Data.Ratio ((%))
+
 -- Add grid layout
 import XMonad.Layout.Grid
 
