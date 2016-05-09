@@ -7,3 +7,7 @@ vim/.vim/bundle/*
 vim/.vim/autoload
 vim/.vim/plugged
 vim/.vim/.netrwhist
+xmonad/.xmonad/history
+vim/.vim/spell
+ipython/.ipython
+bash/.bashrc.d/aws.sh

@@ -25,8 +25,9 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                                   50
                     , Run DynNetwork [] 10
                     , Run Com "/home/schmidmt/.xmonad/xmobar-load" [] "load" 100
+                    , Run Weather "KSTL" ["-t", "<tempC>C, rh <rh>%"] 300000
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %dynnetwork% | %multicpu% (%load%) (%thermal0%) | %memory%  %swap% | %battery% | <fc=#ee9a00>%date%</fc>  ( %UTC% )|"
+       , template = "%StdinReader% }{ %dynnetwork% | %multicpu% (%load%) (%thermal0%) | %memory%  %swap% | %battery% | <fc=#ee9a00>%date%</fc>  ( %UTC% ) (%KSTL%)|"
        }

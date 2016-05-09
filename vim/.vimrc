@@ -38,20 +38,23 @@ Plug 'junegunn/limelight.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
 
 " Lang
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'elzr/vim-json', {'for': 'json'}
-Plug 'klen/python-mode', { 'for': 'python' }
+"Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
 "Plug 'JuliaLang/julia-vim', {'for': 'julia'}
 Plug 'rodjek/vim-puppet', {'for': 'puppet'}
-Plug 'lervag/vim-latex'
+Plug 'lervag/vim-latex', {'for': 'latex'}
 Plug 'moll/vim-node', {'for': 'node'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'slim-template/vim-slim'
 Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'wting/rust.vim'
+Plug 'wting/rust.vim', {'for': 'rust'}
 Plug 'tpope/vim-rails',      { 'for': []      }
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'honza/dockerfile.vim', {'for': 'dockerfile'}
@@ -60,14 +63,14 @@ Plug 'chikamichi/mediawiki.vim', {'for': 'wiki'}
 Plug 'keith/tmux.vim', {'for': 'tmux'}
 Plug 'dag/vim-fish', {'for': 'fish'}
 Plug 'uarun/vim-protobuf'
-Plug 'digitaltoad/vim-jade', {'for': 'jade'}
+Plug 'digitaltoad/vim-jade', {'for': ['jade', 'pug']}
 Plug 'adimit/prolog.vim', {'for': 'prolog'}
-Plug 'fatih/vim-go'
-Plug 'chikamichi/mediawiki.vim'
-Plug 'keith/tmux.vim'
+Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'chikamichi/mediawiki.vim', {'for': 'wiki'}
 Plug 'bhilburn/kernel-coding-style'
-Plug 'vim-ruby/vim-ruby'
-Plug 'wavded/vim-stylus'
+Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
+Plug 'wavded/vim-stylus', {'for': 'stylus'}
+Plug 'vim-perl/vim-perl', {'for': 'perl'}
 
 " Code Management
 Plug 'SirVer/ultisnips'
@@ -76,15 +79,16 @@ Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'albfan/nerdtree-git-plugin'
 "Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 if v:version >= 703
   Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 endif
 Plug 'vim-scripts/a.vim'
 Plug 'Valloric/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'do': './install.sh --clang-completer --gocode-completer --tern-completer --racer-completer' }
 Plug 'unblevable/quick-scope'
+Plug 'benekastah/neomake'
 
 " Written Language Tools
 Plug 'vim-scripts/LanguageTool'
@@ -92,6 +96,7 @@ Plug 'vim-scripts/LanguageTool'
 " Misc
 Plug 'mhinz/vim-rfc'
 Plug 'tpope/vim-sleuth'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()
 endif
@@ -168,6 +173,20 @@ if has("autocmd")
   \ endif
 endif
 
+" }}}
+" =============================================================================
+" Clipboard Config {{{
+" =============================================================================
+" function! ClipboardYank()
+"   call system('xclip -i -selection clipboard', @@)
+" endfunction
+" function! ClipboardPaste()
+"   let @@ = system('xclip -o -selection clipboard')
+" endfunction
+" 
+" vnoremap <silent> y y:call ClipboardYank()<cr>
+" vnoremap <silent> d d:call ClipboardYank()<cr>
+" nnoremap <silent> p :call ClipboardPaste()<cr>p
 
 " }}}
 " =============================================================================
@@ -281,7 +300,7 @@ endfunction
 " ----------------------------------------------------------------------------
 " :Chomp
 " ----------------------------------------------------------------------------
-command! Chomp silent! normal! :%s/\s\+$//<cr>
+command! Chomp silent! normal! :%s/\s\+$//<cr> :noh<cr>
 
 " ----------------------------------------------------------------------------
 " :Root | Change directory to the root of the Git repository
@@ -393,10 +412,10 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " ----------------------------------------------------------------------------
 " Pymode Controls
 " ----------------------------------------------------------------------------
-let g:pymode_rope=0
-let g:pymode_doc=0
-let g:pymode_lint_ignore='W0142'
-let g:pymode_lint_config = '$HOME/.pylint.rc'
+"let g:pymode_rope=0
+"let g:pymode_doc=0
+"let g:pymode_lint_ignore='W0142'
+"let g:pymode_lint_config = '$HOME/.pylint.rc'
 
 " ----------------------------------------------------------------------------
 " LanguageTool
@@ -437,5 +456,12 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" ----------------------------------------------------------------------------
+" Neomake
+" ----------------------------------------------------------------------------
+let g:neomake_open_list = 2
+autocmd! BufWritePost * Neomake
+
 
 " }}}

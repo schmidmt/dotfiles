@@ -1,4 +1,4 @@
-"setlocal expandtab
-setlocal shiftwidth=2
-setlocal tabstop=2
+setlocal expandtab
+setlocal shiftwidth=4
+setlocal tabstop=4
 setlocal listchars=tab:▶\ ,trail:◀,extends:»,precedes:«,eol:¬,nbsp:.

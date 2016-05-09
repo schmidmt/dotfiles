@@ -2,7 +2,7 @@
 xterm*utf8: 2
 
 ! Set extensions dir
-URxvt.perl-lib: ~/.urxvt-ext
+!URxvt.perl-lib: ~/.urxvt-ext
 
 ! Scrollbar
 URxvt.scrollStyle: rxvt
@@ -30,10 +30,10 @@ URxvt*visualBell: false
 !URxvt*boldFont:  -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
 !URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
 !URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
-URxvt*font: xft:Ubuntu Mono derivative Powerline:pixlesize=12
+URxvt*font: xft:Ubuntu Mono derivative Powerline:pixlesize=18
 
 ! Scroll fix
-*URxvt.perl-ext-common: osc-xterm-clipboard
+!*URxvt.perl-ext-common: osc-xterm-clipboard
 
 ! Solarized color scheme for the X Window System
 !
