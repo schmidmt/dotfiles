@@ -194,7 +194,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm          , xK_q), spawn "xmonad --recompile; xmonad --restart")
 
     -- Screensaver/lock screen
-    , ((modm .|. shiftMask, xK_l ), spawn "xscreensaver-command -lock")
+    , ((modm .|. shiftMask, xK_l ), spawn "slimlock")
 
     -- Screenshots: this requires the scrot program for screenshots.
     -- Screenshot of a window
