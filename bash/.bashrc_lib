@@ -82,6 +82,33 @@ PathFull="\W"
 NewLine="\n"
 Jobs="\j"
 
+# contains(string, substring)
+#
+# Returns 0 if the specified string contains the specified substring,
+# otherwise returns 1.
+contains() {
+    string="$1"
+    substring="$2"
+    if test "${string#*$substring}" != "$string"
+    then
+        return 0    # $substring is in $string
+    else
+        return 1    # $substring is not in $string
+    fi
+}
+
+# FS Branch find
+fsbranchfind() {
+  cur="$PWD"
+  while [ "$cur" != "/" ]; do
+    if [ -e "${cur}/${1}" ]; then
+      echo "${cur}/${1}"
+      return 0
+    fi
+    cur="$(dirname "$cur")"
+  done
+  return 1
+}
 
 # Handy Helper Functions
 pathremove () {
@@ -91,6 +118,19 @@ pathremove () {
   local PATHVARIABLE=${2:-PATH}
   for DIR in ${!PATHVARIABLE} ; do
     if [ "$DIR" != "$1" ] ; then
+      NEWPATH=${NEWPATH:+$NEWPATH:}$DIR
+    fi
+  done
+  export $PATHVARIABLE="$NEWPATH"
+}
+
+pathremove_contains() {
+  local IFS=':'
+  local NEWPATH
+  local DIR
+  local PATHVARIABLE=${2:-PATH}
+  for DIR in ${!PATHVARIABLE}; do
+    if ! contains "$DIR" "node_modules/.bin"; then
       NEWPATH=${NEWPATH:+$NEWPATH:}$DIR
     fi
   done
@@ -111,3 +151,20 @@ pathappend () {
 
 export -f pathremove pathprepend pathappend
 
+
+__hostname_color() {
+  declare -a hostcolors
+
+  hostcolors+=( "\[\033[1;31m\]" )
+  hostcolors+=( "\[\033[1;32m\]" )
+  hostcolors+=( "\[\033[1;33m\]" )
+  hostcolors+=( "\[\033[1;34m\]" )
+  hostcolors+=( "\[\033[1;35m\]" )
+  hostcolors+=( "\[\033[1;36m\]" )
+
+  md5=$(hostname | md5sum | cut -d' ' -f1)
+  dec_md5=$((16#${md5}))
+  abs_dec_md5=${dec_md5#-}
+  color_num=$(($abs_dec_md5 % ${#hostcolors[@]} ))
+  echo "${hostcolors[${color_num}]}"
+}

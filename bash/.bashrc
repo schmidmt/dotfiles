@@ -1,3 +1,4 @@
+#!/bin/bash
 # ~/.bashrc
 # vim:set et sts=0 sw=2 ts=2:
 #
@@ -10,28 +11,34 @@
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
-if [[ $- != *i* ]] ; then
-  # Shell is non-interactive.  Be done now!
-  return
-fi
+case "$-" in
+  *i*)      ;;  # The shell is interactive so this should continue.
+  *) return ;;  # The shell is non-interactive, return now.
+esac
 
 # Set the editor to vim
 EDITOR=vim
+export EDITOR
+
+# Enable infinite history
+export HISTSIZE="INFINITE"
 
 # Load Library of helper functions and constants
-source ~/.bashrc_lib
+# shellcheck source=/home/schmidmt/.bashrc_lib
+. ~/.bashrc_lib
 
 # Load Environment Name to load specific shell files
-if [[ -e ${HOME}/.bash_env ]]; then
-  export BASH_ENV=$(cat ${HOME}/.bash_env)
-else
-  BASH_ENV=''
+BASH_ENV=''
+if [ -e "${HOME}/.bash_env" ]; then
+  BASH_ENV="$(cat "${HOME}/.bash_env")"
 fi
+export BASH_ENV
 
 # Load scripts from .bashrc.d
 for script in ${HOME}/.bashrc.d/*.sh; do
-  if [[ -r ${script} ]]; then
-    source ${script}
+  if [ -r "${script}" ]; then
+    # shellcheck source=/dev/null
+    . ${script}
   fi
 done
 
@@ -41,50 +48,57 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWCOLORHINTS=1
 
-function __hostname_color() {
-  declare -a hostcolors
-
-  hostcolors+=( "\[\033[1;31m\]" )
-  hostcolors+=( "\[\033[1;32m\]" )
-  hostcolors+=( "\[\033[1;33m\]" )
-  hostcolors+=( "\[\033[1;34m\]" )
-  hostcolors+=( "\[\033[1;35m\]" )
-  hostcolors+=( "\[\033[1;36m\]" )
-
-  md5=$(hostname | md5sum | cut -d' ' -f1)
-  dec_md5=$((16#${md5}))
-  abs_dec_md5=${dec_md5#-}
-  color_num=$(($abs_dec_md5 % ${#hostcolors[@]} ))
-  echo ${hostcolors[${color_num}]}
-}
+export GIT_PS1_SHOWDIRTYSTATE
+export GIT_PS1_SHOWSTASHSTATE
+export GIT_PS1_SHOWUPSTREAM
+export GIT_PS1_SHOWCOLORHINTS
 
 
-function _update_ps1() {
+_update_ps1() {
+  # Store the previous exit code for later use
   PREV_RET_VAL=$?
-  PS1="${BGreen}\u@$(__hostname_color)\H"
-  PS1="${PS1}${BBlue}:${PathShort} "
-  if (( $(jobs | wc -l) > 0 )); then
-    PS1="${PS1}${BRed}(${Jobs})"
+
+  # Dynamically update PS1
+  #PS1="${BGreen}\u@$(__hostname_color)\H"
+  #PS1="$(__hostname_color)${Color_Off}"
+  PS1=""
+  PS1="${PS1}${BBlue}${PathShort}${Color_Off}"
+  if [ "$(jobs | wc -l)" -gt 0 ]; then
+    PS1="${PS1} ${BRed}(${Jobs})${Color_Off}"
   fi
 
-  if [ ! -z "$VIRTUAL_ENV" ]; then
-    VE_NAME=$(basename "${VIRTUAL_ENV}")
-    PS1="${PS1}${BYellow} (${VE_NAME})"
-  fi
   _set_node_bin
-
   if [ ! -z "$NODE_BIN" ]; then
-    PS1="${PS1}${BGreen}(N)"
+    PS1="${PS1} ${BGreen}(N)${Color_Off}"
+  fi
+
+  _venv_activate
+  if [ ! -z "$VENV_PATH" ]; then
+    PS1="${PS1} ${BYellow}(P)${Color_Off}"
   fi
 
   PS1="${PS1}${BYellow}$(__git_ps1 " (%s)")"
-  if (( ${PREV_RET_VAL} > 0)); then
-    PS1="${PS1} ${On_IRed}\$${Color_Off} "
+
+  if [ "${PREV_RET_VAL}" -ne 0 ]; then
+    PS1="${PS1} ${BIRed}✖${Color_Off}"
   else
-    PS1="${PS1} \$${Color_Off} "
+    PS1="${PS1} ${BIGreen}✔${Color_Off}"
   fi
 
+  # Add some space at the end of PS1
+  PS1="${PS1} "
+
   export PS1
+  return $PREV_RET_VAL
 }
+
 export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 
+PATH="/home/schmidmt/perl5/bin${PATH+:}${PATH}"; export PATH;
+PERL5LIB="/home/schmidmt/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/schmidmt/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/schmidmt/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/schmidmt/perl5"; export PERL_MM_OPT;
+
+# shellcheck source=/dev/null
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
