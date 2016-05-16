@@ -67,7 +67,7 @@ Plug 'digitaltoad/vim-jade', {'for': ['jade', 'pug']}
 Plug 'adimit/prolog.vim', {'for': 'prolog'}
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'chikamichi/mediawiki.vim', {'for': 'wiki'}
-Plug 'bhilburn/kernel-coding-style'
+"Plug 'bhilburn/kernel-coding-style'
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
 Plug 'wavded/vim-stylus', {'for': 'stylus'}
 Plug 'vim-perl/vim-perl', {'for': 'perl'}

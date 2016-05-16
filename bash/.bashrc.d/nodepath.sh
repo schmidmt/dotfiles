@@ -5,14 +5,20 @@
 
 _set_node_bin() {
 	CURRENT_NODE_BIN="$NODE_BIN"
-	export NODE_BIN=$(fsbranchfind "node_modules/.bin")
-	case "$?" in
-		0)
-			pathprepend "$NODE_BIN"
-			return 0
-			;;
-		*)
-			pathremove "$CURRENT_NODE_BIN"
-			return 1
-	esac
+	NODE_BIN=$(fsbranchfind "node_modules/.bin")
+	export NODE_BIN
+	if [ "$NODE_BIN" != "$CURRENT_NODE_BIN" ]; then
+		case "$?" in
+			0)
+				if [ ! -z "$NODE_BIN" ]; then
+					pathprepend "$NODE_BIN"
+				fi
+				return 0
+				;;
+			*)
+				pathremove "$CURRENT_NODE_BIN"
+				return 1
+				;;
+		esac
+	fi
 }

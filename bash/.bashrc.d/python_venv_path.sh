@@ -8,11 +8,13 @@ _venv_activate() {
 	CURRENT_VENV_PATH="$VENV_PATH"
 	VENV_PATH=$(fsbranchfind ".venv")
 	export VENV_PATH
-	if [ "$VENV_PATH" != "$CURRENT_VENV_PATH" ] && [ ! -z "$VENV_PATH" ]; then
+	if [ "$VENV_PATH" != "$CURRENT_VENV_PATH" ]; then
 		case "$?" in
 			0)
-				# shellcheck source=/dev/null
-				. "$VENV_PATH/bin/activate"
+				if [ ! -z "$VENV_PATH" ]; then
+					# shellcheck source=/dev/null
+					. "$VENV_PATH/bin/activate"
+				fi
 				return 0
 				;;
 			*)
