@@ -53,6 +53,9 @@ export GIT_PS1_SHOWSTASHSTATE
 export GIT_PS1_SHOWUPSTREAM
 export GIT_PS1_SHOWCOLORHINTS
 
+# VirtualEnv Disable Prompt
+VIRTUAL_ENV_DISABLE_PROMPT=true
+export VIRTUAL_ENV_DISABLE_PROMPT
 
 _update_ps1() {
   # Store the previous exit code for later use

@@ -89,6 +89,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'do': './install.sh --clang-completer --gocode-completer --tern-completer --racer-completer' }
 Plug 'unblevable/quick-scope'
 Plug 'benekastah/neomake'
+Plug 'FooSoft/vim-argwrap' 
 
 " Written Language Tools
 Plug 'vim-scripts/LanguageTool'
@@ -97,6 +98,7 @@ Plug 'vim-scripts/LanguageTool'
 Plug 'mhinz/vim-rfc'
 Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'takac/vim-hardtime'
 
 call plug#end()
 endif
