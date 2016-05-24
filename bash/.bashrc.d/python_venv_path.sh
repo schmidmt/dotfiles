@@ -7,21 +7,20 @@
 _venv_activate() {
 	CURRENT_VENV_PATH="$VENV_PATH"
 	VENV_PATH=$(fsbranchfind ".venv")
+	found="$?"
 	export VENV_PATH
 	if [ "$VENV_PATH" != "$CURRENT_VENV_PATH" ]; then
-		case "$?" in
-			0)
-				if [ ! -z "$VENV_PATH" ]; then
-					# shellcheck source=/dev/null
-					. "$VENV_PATH/bin/activate"
-				fi
-				return 0
-				;;
-			*)
-				if type deactivate >/dev/null; then
-					deactivate
-				fi
-				return 1
-		esac
+		if [ "$found" -eq 0 ]; then
+			if [ ! -z "$VENV_PATH" ]; then
+				# shellcheck source=/dev/null
+				. "$VENV_PATH/bin/activate"
+			fi
+			return 0
+		else
+			if type deactivate >/dev/null; then
+				deactivate
+			fi
+			return 1
+		fi
 	fi
 }

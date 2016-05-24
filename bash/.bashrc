@@ -70,18 +70,34 @@ _update_ps1() {
     PS1="${PS1} ${BRed}(${Jobs})${Color_Off}"
   fi
 
+  ## Environmental Modifiers
+  # Add node_modules/bin to path automatically
   _set_node_bin
-  if [ ! -z "$NODE_BIN" ]; then
-    PS1="${PS1} ${BGreen}(N)${Color_Off}"
-  fi
-
+  # Automatically activate python virtualenv
   _venv_activate
+  # Alias env if .env file exists
+  _env_activate
+
+  # Add environmental indicators to path
+  indicators=''
+  if [ ! -z "$NODE_BIN" ]; then
+    indicators="${indicators}N"
+  fi
   if [ ! -z "$VENV_PATH" ]; then
-    PS1="${PS1} ${BYellow}(P)${Color_Off}"
+    indicators="${indicators}P"
+  fi
+  if [ ! -z "$ENV_PATH" ]; then
+    indicators="${indicators}E"
+  fi
+  
+  if [ ! -z "$indicators" ]; then
+    PS1="${PS1} ${BIYellow}(${indicators})${Color_Off}"
   fi
 
+  # Add git environment to PS1
   PS1="${PS1}${BYellow}$(__git_ps1 " (%s)")"
 
+  # Add last exit status indicator
   if [ "${PREV_RET_VAL}" -ne 0 ]; then
     PS1="${PS1} ${BIRed}✖${Color_Off}"
   else
