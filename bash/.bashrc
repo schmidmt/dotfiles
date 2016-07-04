@@ -71,25 +71,10 @@ _update_ps1() {
   fi
 
   ## Environmental Modifiers
-  # Add node_modules/bin to path automatically
-  _set_node_bin
-  # Automatically activate python virtualenv
-  _venv_activate
-  # Alias env if .env file exists
-  _env_activate
+  _autoenv
 
   # Add environmental indicators to path
-  indicators=''
-  if [ ! -z "$NODE_BIN" ]; then
-    indicators="${indicators}N"
-  fi
-  if [ ! -z "$VENV_PATH" ]; then
-    indicators="${indicators}P"
-  fi
-  if [ ! -z "$ENV_PATH" ]; then
-    indicators="${indicators}E"
-  fi
-  
+  indicators="$(_autoenv_str)"
   if [ ! -z "$indicators" ]; then
     PS1="${PS1} ${BIYellow}(${indicators})${Color_Off}"
   fi
