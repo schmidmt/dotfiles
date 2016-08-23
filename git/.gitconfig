@@ -15,7 +15,7 @@
 	bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
 
 [mergetool "fugitive"]
-	cmd = gvim -f -c \"Gvdiff\" \"$MERGED\"
+	cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
 [merge]
 	tool = fugitive
 [rerere]

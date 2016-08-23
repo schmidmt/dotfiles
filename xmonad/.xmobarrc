@@ -10,7 +10,7 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     , Run StdinReader
                     , Run CpuFreq["-t", "<cpu0>", "-L", "0", "-H", "2","-l", "lightblue", "-n","white", "-h", "red" ] 50
                     , Run ThermalZone 0 ["-t","<temp>C", "-L", "50", "-H", "70","-l", "lightblue", "-n","white", "-h", "red"] 50
-                    , Run BatteryP ["BAT0"]
+                    , Run BatteryP ["BAT0", "BAT1"]
                                   ["-t", "<acstatus> <watts>W <left>%/<timeleft>",
                                    "-L", "10", "-H", "80", "-p", "3",
                                    "--",
@@ -23,11 +23,9 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                                    "-m", "blue",
                                    "-h", "green"]
                                   50
-                    , Run DynNetwork [] 10
                     , Run Com "/home/schmidmt/.xmonad/xmobar-load" [] "load" 100
-                    , Run Weather "KSTL" ["-t", "<tempC>C, rh <rh>%"] 300000
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %dynnetwork% | %multicpu% (%load%) (%thermal0%) | %memory%  %swap% | %battery% | <fc=#ee9a00>%date%</fc>  ( %UTC% ) (%KSTL%)|"
+       , template = "%StdinReader% }{ %multicpu% (%load%) (%thermal0%) | %memory%  %swap% | %battery% | <fc=#ee9a00>%date%</fc>  ( %UTC% )|"
        }

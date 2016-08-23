@@ -1,5 +1,14 @@
-
 xterm*utf8: 2
+
+!! XFT Settings
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+Xft.autohint:   false
+Xft.lcdfilter:  lcddefault
+
 
 ! Set extensions dir
 !URxvt.perl-lib: ~/.urxvt-ext
@@ -14,7 +23,7 @@ URxvt*saveLines:  0
 ! Little Fading
 ! URxvt*fading:  30
 
-! Spip Unnecessary Scrolling
+! Skip Unnecessary Scrolling
 URxvt*skipScroll:  true
 URxvt*scrollWithBuffer:  false
 URxvt*scrollTtyOutput:  false
@@ -26,11 +35,14 @@ URxvt*visualBell: false
 
 ! Fonts
 !urxvt*boldColors: on
-!URxvt*font:  -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:pixelsize:12
-!URxvt*boldFont:  -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-15,xft:terminus:bold:pixelsize:12
-!URxvt*italicFont:  xft:Bitstream Vera Sans Mono:italic:autohint=true:pixelsize=12
-!URxvt*boldItalicFont:  xft:Bitstream Vera Sans Mono:bold:italic:autohint=true:pixelsize=12
-URxvt*font: xft:Ubuntu Mono derivative Powerline:pixlesize=18
+!URxvt.allow_bold: false
+!URxvt*font: xft:Fira Mono:pixelsize=18
+!URxvt*font: xft:Ubuntu Mono derivative Powerline:style=Regular:pixelsize=12
+!URxvt.boldFont: xft:Ubuntu Mono derivative Powerline:bold:pixelsize=12:antialias=false 
+URxvt*font: xft:DejaVu Sans Mono for Powerline:style=Regular:pixelsize=18
+
+URxvt*letterSpace: -1
+URxvt.depth: 32
 
 ! Scroll fix
 !*URxvt.perl-ext-common: osc-xterm-clipboard
@@ -114,72 +126,96 @@ URxvt.keysym.C-S-Down:  perl:font-size:decglobal
 ! *color14: S_base1
 ! *color15: S_base3
 
-! Xft settings ---------------------------------------------------------------
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintslight
-
 
 ! Colors (FlatColor@https://github.com/MaxSt/FlatColor)
 
-! Color Definitions
+!! Color Definitions
+!!
+!#define black            #212121
+!#define medium_gray      #767676
+!#define white            #F1F1F1
+!#define actual_white     #FFFFFF
+!#define light_black      #424242
+!#define lighter_black    #545454
 !
-#define black            #212121
-#define medium_gray      #767676
-#define white            #F1F1F1
-#define actual_white     #FFFFFF
-#define light_black      #424242
-#define lighter_black    #545454
+!! lighter shadows and darker grays
+!#define subtle_black     #303030
+!#define light_gray       #B2B2B2
+!#define lighter_gray     #C6C6C6
+!
+!! flat colors:
+!#define asphalt          #111d25
+!#define asphalt_subtle   #314451
+!#define dark_asphalt     #1e2c36
+!#define red              #ff6767
+!#define dark_red         #e64040
+!#define green            #88e094
+!#define dark_green       #6dc35c
+!#define yellow           #ffe880
+!#define dark_yellow      #f2a562
+!#define blue             #7accf0
+!#define dark_blue        #6097dc
+!#define purple           #b585ca
+!#define dark_purple      #8d73de
+!#define cyan             #7ee8c6
+!#define dark_cyan        #53d3d2
+!#define clouds           #fbfcfc
+!#define clouds_subtle    #cbe3e7
+!#define dark_clouds      #bbc8e0
+!
+!! ~/.Xresource
+!! Colors
+!
+!*.foreground:   clouds
+!*.background:   dark_asphalt
+!*.cursorColor:  clouds
+!*.color0:       asphalt_subtle
+!*.color8:       asphalt
+!*.color1:       red
+!*.color9:       dark_red
+!*.color2:       green
+!*.color10:      dark_green
+!*.color3:       yellow
+!*.color11:      dark_yellow
+!*.color4:       blue
+!*.color12:      dark_blue
+!*.color5:       purple
+!*.color13:      dark_purple
+!*.color6:       cyan
+!*.color14:      dark_cyan
+!*.color7:       clouds_subtle
+!*.color15:      dark_clouds
 
-! lighter shadows and darker grays
-#define subtle_black     #303030
-#define light_gray       #B2B2B2
-#define lighter_gray     #C6C6C6
-
-! flat colors:
-#define asphalt          #111d25
-#define asphalt_subtle   #314451
-#define dark_asphalt     #1e2c36
-#define red              #ff6767
-#define dark_red         #e64040
-#define green            #88e094
-#define dark_green       #6dc35c
-#define yellow           #ffe880
-#define dark_yellow      #f2a562
-#define blue             #7accf0
-#define dark_blue        #6097dc
-#define purple           #b585ca
-#define dark_purple      #8d73de
-#define cyan             #7ee8c6
-#define dark_cyan        #53d3d2
-#define clouds           #fbfcfc
-#define clouds_subtle    #cbe3e7
-#define dark_clouds      #bbc8e0
-
-! ~/.Xresource
-! Colors
-
-*.foreground:   clouds
-*.background:   dark_asphalt
-*.cursorColor:  clouds
-*.color0:       asphalt_subtle
-*.color8:       asphalt
-*.color1:       red
-*.color9:       dark_red
-*.color2:       green
-*.color10:      dark_green
-*.color3:       yellow
-*.color11:      dark_yellow
-*.color4:       blue
-*.color12:      dark_blue
-*.color5:       purple
-*.color13:      dark_purple
-*.color6:       cyan
-*.color14:      dark_cyan
-*.color7:       clouds_subtle
-*.color15:      dark_clouds
+! Jellybean Colors
+! Jellybeans Terminal Colours
+! vim: ft=xdefaults
+URxvt*background: #151515
+! *foreground: #888888
+URxvt*foreground: #fafafa
+! black
+URxvt*color0: #1C1C1C
+URxvt*color8: #404040
+! red
+URxvt*color1: #B85335
+URxvt*color9: #CF6A4C
+! green
+URxvt*color2: #799D6A
+URxvt*color10: #99AD6A
+! yellow
+URxvt*color3: #FFB964
+URxvt*color11: #FAD07A
+! blue
+URxvt*color4: #667899
+URxvt*color12: #8197BF
+! magenta
+URxvt*color5: #8787AF
+URxvt*color13: #C6B6EE
+! cyan
+URxvt*color6: #668799
+URxvt*color14: #8FBFDC
+! white
+URxvt*color7: #888888
+URxvt*color15: #E8E8D3
 
 
 ! URxvt*termName:                       string
