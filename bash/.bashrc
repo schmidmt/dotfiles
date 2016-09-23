@@ -70,7 +70,7 @@ _update_ps1() {
   if [ "$PS1_MIN" != true ]; then
     #PS1="${BGreen}\u@$(__hostname_color)\H"
     if [ ! -z "$SSH_CONNECTION" ]; then
-      PS1="${PS1}$(__hostname_color)${Color_Off} "
+      PS1="${PS1}$(__hostname_color)\h${Color_Off} "
     fi
     PS1="${PS1}${BBlue}${PathShort}${Color_Off}"
     if [ "$(jobs | wc -l)" -gt 0 ]; then
