@@ -61,26 +61,32 @@ _update_ps1() {
   # Store the previous exit code for later use
   PREV_RET_VAL=$?
 
-  # Dynamically update PS1
-  #PS1="${BGreen}\u@$(__hostname_color)\H"
-  #PS1="$(__hostname_color)${Color_Off}"
-  PS1=""
-  PS1="${PS1}${BBlue}${PathShort}${Color_Off}"
-  if [ "$(jobs | wc -l)" -gt 0 ]; then
-    PS1="${PS1} ${BRed}(${Jobs})${Color_Off}"
-  fi
-
   ## Environmental Modifiers
   _autoenv
 
-  # Add environmental indicators to path
-  indicators="$(_autoenv_str)"
-  if [ ! -z "$indicators" ]; then
-    PS1="${PS1} ${BIYellow}(${indicators})${Color_Off}"
-  fi
+  # Dynamically update PS1
+  PS1=""
 
-  # Add git environment to PS1
-  PS1="${PS1}${BYellow}$(__git_ps1 " (%s)")"
+  if [ "$PS1_MIN" != true ]; then
+    #PS1="${BGreen}\u@$(__hostname_color)\H"
+    if [ ! -z "$SSH_CONNECTION" ]; then
+      PS1="${PS1}$(__hostname_color)${Color_Off} "
+    fi
+    PS1="${PS1}${BBlue}${PathShort}${Color_Off}"
+    if [ "$(jobs | wc -l)" -gt 0 ]; then
+      PS1="${PS1} ${BRed}(${Jobs})${Color_Off}"
+    fi
+
+    # Add environmental indicators to path
+    indicators="$(_autoenv_str)"
+    if [ ! -z "$indicators" ]; then
+      PS1="${PS1} ${BIYellow}(${indicators})${Color_Off}"
+    fi
+
+    # Add git environment to PS1
+    PS1="${PS1}${BYellow}$(__git_ps1 " (%s)")"
+
+  fi 
 
   # Add last exit status indicator
   if [ "${PREV_RET_VAL}" -ne 0 ]; then
