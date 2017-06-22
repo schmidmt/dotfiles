@@ -21,7 +21,8 @@ EDITOR=vim
 export EDITOR
 
 # Enable infinite history
-export HISTSIZE="INFINITE"
+HISTSIZE="INFINITE"
+export HISTSIZE
 
 # Load Library of helper functions and constants
 # shellcheck source=/home/schmidmt/.bashrc_lib
@@ -72,7 +73,9 @@ _update_ps1() {
     if [ ! -z "$SSH_CONNECTION" ]; then
       PS1="${PS1}$(__hostname_color)\h${Color_Off} "
     fi
+
     PS1="${PS1}${BBlue}${PathShort}${Color_Off}"
+
     if [ "$(jobs | wc -l)" -gt 0 ]; then
       PS1="${PS1} ${BRed}(${Jobs})${Color_Off}"
     fi
@@ -102,7 +105,10 @@ _update_ps1() {
   return $PREV_RET_VAL
 }
 
-export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# Add _update_ps1 function to prompt command if it isn't already there.
+if ! contains "$PROMPT_COMMAND" "_update_ps1"; then
+  export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
 
 # shellcheck source=/dev/null
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

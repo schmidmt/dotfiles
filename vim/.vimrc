@@ -23,6 +23,7 @@ Plug 'MaxSt/FlatColor'
 "Plug 'vim-scripts/miko'
 "Plug 'vim-scripts/Gentooish'
 "Plug 'NLKNguyen/papercolor-theme'
+Plug 'mhartington/oceanic-next'
 
 " Edit
 Plug 'tpope/vim-abolish'
@@ -73,6 +74,7 @@ Plug 'wavded/vim-stylus', {'for': 'stylus'}
 Plug 'vim-perl/vim-perl', {'for': 'perl'}
 
 " Code Management
+Plug 'w0rp/ale'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 "Plug 'gregsexton/MatchTag'
@@ -88,11 +90,8 @@ Plug 'vim-scripts/a.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'do': './install.sh --clang-completer --gocode-completer --tern-completer --racer-completer' }
 Plug 'unblevable/quick-scope'
-Plug 'benekastah/neomake'
+"Plug 'benekastah/neomake'
 Plug 'FooSoft/vim-argwrap' 
-
-" Written Language Tools
-Plug 'vim-scripts/LanguageTool'
 
 " Misc
 Plug 'mhinz/vim-rfc'
@@ -131,7 +130,7 @@ set hlsearch
 set incsearch
 set noswapfile
 set nobackup
-set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.,eol:¬
+"set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.,eol:¬
 set wildmode=longest,list,full
 set wildmenu
 
@@ -152,13 +151,8 @@ nmap <silent> <leader>ef :Ftedit()<CR>
 
 filetype plugin indent on
 
-let g:flatcolor_asphaltbg=0
-
-if has("gui_running")
-  silent! colorscheme flatcolor
-else
-  silent! colorscheme default
-endif
+" let g:flatcolor_asphaltbg=0
+silent! colorscheme OceanicNext
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=utf-8,latin1
@@ -458,12 +452,5 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-" ----------------------------------------------------------------------------
-" Neomake
-" ----------------------------------------------------------------------------
-let g:neomake_open_list = 2
-autocmd! BufWritePost * Neomake
-
 
 " }}}

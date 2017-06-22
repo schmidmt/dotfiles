@@ -3,14 +3,21 @@
 ## lang.sh
 # Set the language for the terminal
 
-DESIRED_LANG=en_US.utf8
-FALLBACK_LANG=C
+LANG_PRIORITY="en_US.UTF-8 en_US.utf8 en_US.US-ASCII POSIX C"
 
-env -i locale --all-locales | grep -q ${DESIRED_LANG} > /dev/null 2>/dev/null
-if [ $? = 0 ]; then
-  export LC_ALL=${DESIRED_LANG}
-  export LANG=${DESIRED_LANG}
-else
-  export LC_ALL=${FALLBACK_LANG}
-  export LANG=${FALLBACK_LANG}
+found=false
+for DESIRED_LANG in $LANG_PRIORITY; do
+  if (env -i locale -a | grep -q "${DESIRED_LANG}"); then
+    LC_ALL="${DESIRED_LANG}"
+    LANG="${DESIRED_LANG}"
+    found=true
+    break
+  fi
+done
+
+if [ "$found" != "true" ]; then
+  echo "Failed to set LANG and LC_ALL" >&2
 fi
+
+export LC_ALL
+export LANG
