@@ -14,6 +14,7 @@ silent! if plug#begin('~/.vim/plugged')
 
 " Colors
 Plug 'MaxSt/FlatColor'
+Plug 'mhartington/oceanic-next'
 "Plug 'altercation/vim-colors-solarized'
 "Plug 'gosukiwi/vim-atom-dark'
 "Plug 'tomasr/molokai'
@@ -23,7 +24,6 @@ Plug 'MaxSt/FlatColor'
 "Plug 'vim-scripts/miko'
 "Plug 'vim-scripts/Gentooish'
 "Plug 'NLKNguyen/papercolor-theme'
-Plug 'mhartington/oceanic-next'
 
 " Edit
 Plug 'tpope/vim-abolish'
@@ -41,56 +41,40 @@ Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-
 " Lang
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'elzr/vim-json', {'for': 'json'}
-"Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
 "Plug 'JuliaLang/julia-vim', {'for': 'julia'}
-Plug 'rodjek/vim-puppet', {'for': 'puppet'}
 Plug 'lervag/vim-latex', {'for': 'latex'}
 Plug 'moll/vim-node', {'for': 'node'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
-Plug 'slim-template/vim-slim'
-Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'wting/rust.vim', {'for': 'rust'}
-Plug 'tpope/vim-rails',      { 'for': []      }
-Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'honza/dockerfile.vim', {'for': 'dockerfile'}
-Plug 'solarnz/thrift.vim'
-Plug 'chikamichi/mediawiki.vim', {'for': 'wiki'}
 Plug 'keith/tmux.vim', {'for': 'tmux'}
-Plug 'dag/vim-fish', {'for': 'fish'}
-Plug 'uarun/vim-protobuf'
-Plug 'digitaltoad/vim-jade', {'for': ['jade', 'pug']}
-Plug 'adimit/prolog.vim', {'for': 'prolog'}
+"Plug 'dag/vim-fish', {'for': 'fish'}
+"Plug 'uarun/vim-protobuf'
+"Plug 'digitaltoad/vim-jade', {'for': ['jade', 'pug']}
+"Plug 'adimit/prolog.vim', {'for': 'prolog'}
 Plug 'fatih/vim-go', {'for': 'go'}
-Plug 'chikamichi/mediawiki.vim', {'for': 'wiki'}
-"Plug 'bhilburn/kernel-coding-style'
-Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
+"Plug 'chikamichi/mediawiki.vim', {'for': 'wiki'}
+"Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
 Plug 'wavded/vim-stylus', {'for': 'stylus'}
-Plug 'vim-perl/vim-perl', {'for': 'perl'}
+"Plug 'vim-perl/vim-perl', {'for': 'perl'}
 
 " Code Management
 Plug 'w0rp/ale'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-"Plug 'gregsexton/MatchTag'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'albfan/nerdtree-git-plugin'
-"Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-"Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 if v:version >= 703
   Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 endif
 Plug 'vim-scripts/a.vim'
-Plug 'Valloric/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'do': './install.sh --clang-completer --gocode-completer --tern-completer --racer-completer' }
+Plug 'maralla/completor.vim'
 Plug 'unblevable/quick-scope'
-"Plug 'benekastah/neomake'
 Plug 'FooSoft/vim-argwrap' 
 
 " Misc
@@ -98,7 +82,7 @@ Plug 'mhinz/vim-rfc'
 Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'takac/vim-hardtime'
-
+Plug 'JamshedVesuna/vim-markdown-preview'
 call plug#end()
 endif
 
@@ -133,10 +117,8 @@ set nobackup
 "set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.,eol:¬
 set wildmode=longest,list,full
 set wildmenu
-
-if has("gui_running")
-  set list
-endif
+set showbreak=↪\ 
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -368,6 +350,7 @@ nnoremap U :UndotreeToggle<CR>
 " vim-markdown
 " ----------------------------------------------------------------------------
 let g:vim_markdown_initial_foldlevel = &foldlevelstart
+let g:vim_markdown_preview_browser = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
 " ----------------------------------------------------------------------------
 " NERDTree Config
@@ -398,25 +381,9 @@ let g:UltiSnipsEditSplit="vertical"
 let g:snips_email='schmidmt@gmail.com'
 
 " ----------------------------------------------------------------------------
-" YCM Controls
+" Markdown-Preview
 " ----------------------------------------------------------------------------
-" From http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
-" ----------------------------------------------------------------------------
-" Pymode Controls
-" ----------------------------------------------------------------------------
-"let g:pymode_rope=0
-"let g:pymode_doc=0
-"let g:pymode_lint_ignore='W0142'
-"let g:pymode_lint_config = '$HOME/.pylint.rc'
-
-" ----------------------------------------------------------------------------
-" LanguageTool
-" ----------------------------------------------------------------------------
-let g:languagetool_jar='/home/schmidmt/LanguageTool-3.0/languagetool-commandline.jar'
+let g:vim_markdown_preview_github=1
 
 " ----------------------------------------------------------------------------
 " Goyo
