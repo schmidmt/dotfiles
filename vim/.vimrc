@@ -83,6 +83,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'takac/vim-hardtime'
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'romainl/vim-cool'
 call plug#end()
 endif
 
