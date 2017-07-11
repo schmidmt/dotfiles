@@ -8,10 +8,8 @@ case "$(uname -s)" in
 		alias grep='grep --color=auto'
 		;;
 	Darwin)
-		if which gls >/dev/null; then
-			alias ls="gls --color=auto --classify"
-			alias grep="ggrep --color=auto"
-			alias find="gfind"
-		fi
+		which gls > /dev/null && alias ls="gls --color=auto --classify"
+		which ggrep > /dev/null && alias grep="ggrep --color=auto"
+		which gfind > /dev/null && alias find="gfind"
 		;;
 esac

@@ -109,6 +109,7 @@ autoenv() {
 	[ ! -z "$VENV_PATH" ] && printf "VENV_PATH=%s\n" "$VENV_PATH"
 	[ ! -z "$NODE_BIN" ] && printf "NODE_BIN=%s\n" "$NODE_BIN"
 	[ ! -z "$ENV_PATH" ] && printf "ENV_PATH=%s\n" "$ENV_PATH"
+	return 0
 }
 
 
