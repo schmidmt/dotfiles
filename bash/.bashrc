@@ -74,6 +74,11 @@ _update_ps1() {
       PS1="${PS1}$(__hostname_color)\h${Color_Off} "
     fi
 
+    # Add check for sudo
+    if [ ! -z "$SUDO_USER" ]; then
+      PS1="${PS1} ${BYellow}(SUDO)${Color_Off}"
+    fi
+
     PS1="${PS1}${BBlue}${PathShort}${Color_Off}"
 
     if [ "$(jobs | wc -l)" -gt 0 ]; then
