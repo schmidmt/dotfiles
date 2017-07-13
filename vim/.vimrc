@@ -82,7 +82,7 @@ Plug 'mhinz/vim-rfc'
 Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'takac/vim-hardtime'
-Plug 'JamshedVesuna/vim-markdown-preview'
+"Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'romainl/vim-cool'
 call plug#end()
 endif
@@ -97,7 +97,7 @@ set autoindent
 set autoread
 set history=50
 set number
-set smartindent
+"set smartindent
 set background=dark
 set nowrap
 set bs=indent,eol,start
@@ -348,12 +348,6 @@ let g:undotree_WindowLayout = 2
 nnoremap U :UndotreeToggle<CR>
 
 " ----------------------------------------------------------------------------
-" vim-markdown
-" ----------------------------------------------------------------------------
-let g:vim_markdown_initial_foldlevel = &foldlevelstart
-let g:vim_markdown_preview_browser = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-
-" ----------------------------------------------------------------------------
 " NERDTree Config
 " ----------------------------------------------------------------------------
 nmap <silent> <leader>nt :NERDTreeToggle<CR>
@@ -382,9 +376,8 @@ let g:UltiSnipsEditSplit="vertical"
 let g:snips_email='schmidmt@gmail.com'
 
 " ----------------------------------------------------------------------------
-" Markdown-Preview
+" Instant Markdown Preview
 " ----------------------------------------------------------------------------
-let g:vim_markdown_preview_github=1
 
 " ----------------------------------------------------------------------------
 " Goyo

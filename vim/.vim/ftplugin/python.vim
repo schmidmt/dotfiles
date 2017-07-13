@@ -1,6 +1,6 @@
 " Python Specific Filetypes stuffs
 
 setlocal expandtab
-setlocal tabstop=2
-setlocal shiftwidth=2
+setlocal tabstop=4
+setlocal shiftwidth=4
 setlocal colorcolumn=79

@@ -42,6 +42,12 @@ for script in ${HOME}/.bashrc.d/*.sh; do
     . ${script}
   fi
 done
+for script in ${HOME}/.bashrc.d/local/*.sh; do
+  if [ -r "${script}" ]; then
+    # shellcheck source=/dev/null
+    . ${script}
+  fi
+done
 
 # GIT_PS1 Options
 GIT_PS1_SHOWDIRTYSTATE=1
