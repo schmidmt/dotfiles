@@ -84,7 +84,11 @@ _autoenv_python() {
 			return 0
 		else
 			if type deactivate >/dev/null; then
-				deactivate
+				if isfunc deactivate; then
+					deactivate
+				else
+					source deactivate
+				fi
 			fi
 			return 1
 		fi

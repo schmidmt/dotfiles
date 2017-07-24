@@ -168,3 +168,9 @@ __hostname_color() {
   color_num=$(($abs_dec_md5 % ${#hostcolors[@]} ))
   echo "${hostcolors[${color_num}]}"
 }
+
+isfunc() {
+  nametype="$(type -t "$1")"
+  [ "${nametype##* }" == "function" ]
+  return $?
+}
