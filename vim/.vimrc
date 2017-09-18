@@ -13,54 +13,53 @@ filetype off
 silent! if plug#begin('~/.vim/plugged')
 
 " Colors
+Plug 'hzchirs/vim-material'
 Plug 'MaxSt/FlatColor'
 Plug 'mhartington/oceanic-next'
-"Plug 'altercation/vim-colors-solarized'
-"Plug 'gosukiwi/vim-atom-dark'
-"Plug 'tomasr/molokai'
-"Plug 'croaky/vim-colors-github'
-"Plug 'cseelus/vim-colors-clearance'
-"Plug 'vim-scripts/rdark-terminal'
-"Plug 'vim-scripts/miko'
-"Plug 'vim-scripts/Gentooish'
-"Plug 'NLKNguyen/papercolor-theme'
+Plug 'altercation/vim-colors-solarized'
+Plug 'gosukiwi/vim-atom-dark'
+Plug 'tomasr/molokai'
+Plug 'croaky/vim-colors-github'
+Plug 'cseelus/vim-colors-clearance'
+Plug 'vim-scripts/rdark-terminal'
+Plug 'vim-scripts/miko'
+Plug 'vim-scripts/Gentooish'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'lu-ren/SerialExperimentsLain'
 
 " Edit
-Plug 'tpope/vim-abolish'
 Plug 'davidbeckingsale/writegood.vim'
-Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
-Plug 'scrooloose/nerdcommenter'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'suan/vim-instant-markdown'
-"Plug 'xuhdev/vim-latex-live-preview'
-Plug 'unblevable/quick-scope'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+Plug 'scrooloose/nerdcommenter'
+Plug 'suan/vim-instant-markdown'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
 " Git
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " Lang
-Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
-Plug 'elzr/vim-json', {'for': 'json'}
-Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
 "Plug 'JuliaLang/julia-vim', {'for': 'julia'}
-Plug 'lervag/vim-latex', {'for': 'latex'}
-Plug 'moll/vim-node', {'for': 'node'}
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'wting/rust.vim', {'for': 'rust'}
+Plug 'dag/vim-fish', {'for': 'fish'}
+Plug 'adimit/prolog.vim', {'for': 'prolog'}
+Plug 'digitaltoad/vim-jade', {'for': ['jade', 'pug']}
+Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'honza/dockerfile.vim', {'for': 'dockerfile'}
 Plug 'keith/tmux.vim', {'for': 'tmux'}
-"Plug 'dag/vim-fish', {'for': 'fish'}
-"Plug 'uarun/vim-protobuf'
-"Plug 'digitaltoad/vim-jade', {'for': ['jade', 'pug']}
-"Plug 'adimit/prolog.vim', {'for': 'prolog'}
-Plug 'fatih/vim-go', {'for': 'go'}
-"Plug 'chikamichi/mediawiki.vim', {'for': 'wiki'}
-"Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+Plug 'moll/vim-node', {'for': 'node'}
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
+Plug 'uarun/vim-protobuf'
 Plug 'wavded/vim-stylus', {'for': 'stylus'}
-"Plug 'vim-perl/vim-perl', {'for': 'perl'}
+Plug 'wting/rust.vim', {'for': 'rust'}
 
 " Code Management
 Plug 'w0rp/ale'
@@ -74,16 +73,18 @@ if v:version >= 703
 endif
 Plug 'vim-scripts/a.vim'
 Plug 'maralla/completor.vim'
-Plug 'unblevable/quick-scope'
 Plug 'FooSoft/vim-argwrap' 
 
 " Misc
+Plug 'Yggdroot/indentLine'
+Plug 'jamessan/vim-gnupg'
+Plug 'rhysd/vim-grammarous'
 Plug 'mhinz/vim-rfc'
-Plug 'tpope/vim-sleuth'
+"Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'takac/vim-hardtime'
-"Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'romainl/vim-cool'
+
 call plug#end()
 endif
 
@@ -97,7 +98,6 @@ set autoindent
 set autoread
 set history=50
 set number
-"set smartindent
 set background=dark
 set nowrap
 set bs=indent,eol,start
@@ -115,7 +115,6 @@ set hlsearch
 set incsearch
 set noswapfile
 set nobackup
-"set listchars=tab:▸\ ,trail:.,extends:#,nbsp:.,eol:¬
 set wildmode=longest,list,full
 set wildmenu
 set showbreak=↪\ 
@@ -134,8 +133,7 @@ nmap <silent> <leader>ef :Ftedit()<CR>
 
 filetype plugin indent on
 
-" let g:flatcolor_asphaltbg=0
-silent! colorscheme OceanicNext
+silent! colorscheme SerialExperimentsLain
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=utf-8,latin1
@@ -197,20 +195,6 @@ endif
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
-endif
-
-" }}}
-" =============================================================================
-" GUI Config {{{
-" =============================================================================
-if has("gui_running")
-  set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
-  set guioptions-=m  "remove menu bar
-  set guioptions-=T  "remove toolbar
-  set guioptions-=r  "remove right-hand scroll bar
-  set guioptions-=L  "remove left-hand scroll bar
-  set guioptions-=e  "Remove tabs
-  set guiheadroom=0
 endif
 
 " }}}
