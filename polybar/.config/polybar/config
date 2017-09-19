@@ -172,7 +172,7 @@ label = %percentage_used%%
 [module/wlan]
 type = custom/script
 interval = 10
-exec = "nmcli d show wlp2s0 | grep 'GENERAL.CONNECTION' | awk '{print $2}'"
+exec = "nmcli d show wlp2s0 | grep 'GENERAL.CONNECTION' | cut -d':' -f2 | awk '{$1=$1};1'"
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 

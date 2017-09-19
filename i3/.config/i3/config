@@ -36,8 +36,18 @@ new_window normal 0
 
 for_window [class=".*"] title_format "<span font='FuraMono Nerd Font 8'> > %title</span>"
 
+# Media Keys
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer sset Master toggle
+#
+# # Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
 # start a terminal
-bindsym $mod+Shift+Return exec st -c tmux
+bindsym $mod+Shift+Return exec st -e tmux
 
 # kill focused window
 bindsym $mod+Shift+c kill
