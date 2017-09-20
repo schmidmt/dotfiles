@@ -84,6 +84,7 @@ Plug 'mhinz/vim-rfc'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'takac/vim-hardtime'
 Plug 'romainl/vim-cool'
+Plug 'janko-m/vim-test'
 
 call plug#end()
 endif
