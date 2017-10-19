@@ -33,7 +33,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdcommenter'
-Plug 'suan/vim-instant-markdown'
+" Plug 'suan/vim-instant-markdown'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'

@@ -88,7 +88,7 @@ _update_ps1() {
     PS1="${PS1}${BBlue}${PathShort}${Color_Off}"
 
     if [ "$(jobs | wc -l)" -gt 0 ]; then
-      PS1="${PS1} ${BRed}(${Jobs})${Color_Off}"
+      PS1="${PS1} ${BRed}${Color_Off}"
     fi
 
     # Add environmental indicators to path
