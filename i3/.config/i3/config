@@ -202,7 +202,7 @@ exec parcellite &
 exec compton &
 exec pkill dunst && dunst -conf ~/.i3/dunstrc & 
 exec_always --no-startup-id ~/.bin/bar.sh
-exec nitrogen restore &
+exec nitrogen --restore &
 
 # cycle workspaces
 bindsym $mod+Tab workspace back_and_forth

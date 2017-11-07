@@ -60,6 +60,7 @@ Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
 Plug 'uarun/vim-protobuf'
 Plug 'wavded/vim-stylus', {'for': 'stylus'}
 Plug 'wting/rust.vim', {'for': 'rust'}
+Plug 'derekwyatt/vim-scala'
 
 " Code Management
 Plug 'w0rp/ale'
