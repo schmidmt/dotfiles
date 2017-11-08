@@ -20,7 +20,7 @@ _autoenv_go() {
 				fi
 				return 0
 		else
-				pathremove "${GOPATH}/bin"
+				pathremove "${CURRENT_GOPATH}/bin"
 				return 1
 		fi
 	fi
