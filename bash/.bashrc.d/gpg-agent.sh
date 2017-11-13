@@ -7,32 +7,34 @@
 GPG_TTY=$(tty)
 export GPG_TTY
 
-echo UPDATESTARTUPTTY | gpg-connect-agent 2>/dev/null >/dev/null
-
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-	SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-	export SSH_AUTH_SOCK
-fi
-
-gpg_updatetty() {
+if [ -z "${SSH_CONNECTION}" ]; then
 	echo UPDATESTARTUPTTY | gpg-connect-agent 2>/dev/null >/dev/null
-}
 
-gpg() {
-	gpg_updatetty
-	command gpg "$@"
-	return $?
-}
+	unset SSH_AGENT_PID
+	if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+		SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+		export SSH_AUTH_SOCK
+	fi
 
-git() {
-	gpg_updatetty
-	command git "$@"
-	return $?
-}
+	gpg_updatetty() {
+		echo UPDATESTARTUPTTY | gpg-connect-agent 2>/dev/null >/dev/null
+	}
 
-ssh() {
-	gpg_updatetty
-	command ssh "$@"
-	return $?
-}
+	gpg() {
+		gpg_updatetty
+		command gpg "$@"
+		return $?
+	}
+
+	git() {
+		gpg_updatetty
+		command git "$@"
+		return $?
+	}
+
+	ssh() {
+		gpg_updatetty
+		command ssh "$@"
+		return $?
+	}
+fi
