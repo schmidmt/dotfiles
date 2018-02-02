@@ -2,7 +2,7 @@
 [user]
   email = schmidmt@gmail.com
   name = Mike Schmidt
-	signingkey = B127342C463AD19CB2C2D16A1A9B7588C5BE9A9C
+  # signingkey = B127342C463AD19CB2C2D16A1A9B7588C5BE9A9C
 [push]
   default = simple
 [alias]
@@ -16,7 +16,7 @@
   bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
 
 [mergetool "fugitive"]
-  cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
+  cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
 [merge]
   tool = fugitive
 [rerere]
@@ -34,3 +34,5 @@
             '"
   smudge = cat
   required = true
+[commit]
+  # gpgsign = true

@@ -122,7 +122,7 @@ autoenv() {
 _autoenv_str() {
 	[ ! -z "$GOPATH" ] && printf ""
 	[ ! -z "$VENV_PATH" ] && printf ""
-	[ ! -z "$NODE_BIN" ] && printf ""
+	[ ! -z "$NODE_BIN" ] && printf ""
 	[ ! -z "$ENV_PATH" ] && printf "E"
 }
 

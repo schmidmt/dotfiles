@@ -61,6 +61,7 @@ Plug 'uarun/vim-protobuf'
 Plug 'wavded/vim-stylus', {'for': 'stylus'}
 Plug 'wting/rust.vim', {'for': 'rust'}
 Plug 'derekwyatt/vim-scala'
+" Plug 'racer-rust/vim-racer'
 
 " Code Management
 Plug 'w0rp/ale'
@@ -86,6 +87,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'takac/vim-hardtime'
 Plug 'romainl/vim-cool'
 Plug 'janko-m/vim-test'
+
+Plug 'vim-scripts/Vim-R-plugin'
+Plug 'maverickg/stan.vim'
 
 call plug#end()
 endif
@@ -400,5 +404,11 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" ----------------------------------------------------------------------------
+" Racer
+" ----------------------------------------------------------------------------
+let g:completor_racer_binary = "/Users/mschmidt/.cargo/bin/racer"
+
 
 " }}}

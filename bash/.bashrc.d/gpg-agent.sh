@@ -37,4 +37,10 @@ if [ -z "${SSH_CONNECTION}" ]; then
 		command ssh "$@"
 		return $?
 	}
+
+	mosh() {
+		gpg_updatetty
+		command mosh "$@"
+		return $?
+	}
 fi
