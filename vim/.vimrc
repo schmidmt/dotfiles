@@ -13,28 +13,28 @@ filetype off
 silent! if plug#begin('~/.vim/plugged')
 
 " Colors
-Plug 'hzchirs/vim-material'
-Plug 'MaxSt/FlatColor'
-Plug 'mhartington/oceanic-next'
-Plug 'altercation/vim-colors-solarized'
-Plug 'gosukiwi/vim-atom-dark'
-Plug 'tomasr/molokai'
-Plug 'croaky/vim-colors-github'
-Plug 'cseelus/vim-colors-clearance'
-Plug 'vim-scripts/rdark-terminal'
-Plug 'vim-scripts/miko'
-Plug 'vim-scripts/Gentooish'
-Plug 'NLKNguyen/papercolor-theme'
+" Plug 'hzchirs/vim-material'
+" Plug 'MaxSt/FlatColor'
+" Plug 'mhartington/oceanic-next'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'gosukiwi/vim-atom-dark'
+" Plug 'tomasr/molokai'
+" Plug 'croaky/vim-colors-github'
+" Plug 'cseelus/vim-colors-clearance'
+" Plug 'vim-scripts/rdark-terminal'
+" Plug 'vim-scripts/miko'
+" Plug 'vim-scripts/Gentooish'
+" Plug 'NLKNguyen/papercolor-theme'
 Plug 'lu-ren/SerialExperimentsLain'
 
 " Edit
-Plug 'davidbeckingsale/writegood.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+" Plug 'davidbeckingsale/writegood.vim'
+" Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/limelight.vim'
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'scrooloose/nerdcommenter'
 " Plug 'suan/vim-instant-markdown'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -62,10 +62,11 @@ Plug 'wavded/vim-stylus', {'for': 'stylus'}
 Plug 'wting/rust.vim', {'for': 'rust'}
 Plug 'derekwyatt/vim-scala'
 " Plug 'racer-rust/vim-racer'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " Code Management
 Plug 'w0rp/ale'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'albfan/nerdtree-git-plugin'
@@ -74,7 +75,8 @@ if v:version >= 703
   Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 endif
 Plug 'vim-scripts/a.vim'
-Plug 'maralla/completor.vim'
+"
+"Plug 'maralla/completor.vim'
 Plug 'FooSoft/vim-argwrap' 
 
 " Misc

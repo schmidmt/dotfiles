@@ -72,7 +72,7 @@ _autoenv_node() {
 # Automatically activate python VirtualEnv if .venv path is in branch.
 _autoenv_python() {
 	CURRENT_VENV_PATH="$VENV_PATH"
-	VENV_PATH=$(fsbranchfind ".venv")
+	VENV_PATH="$(fsbranchfind ".venv")"
 	found="$?"
 	export VENV_PATH
 	if [ "$VENV_PATH" != "$CURRENT_VENV_PATH" ]; then
@@ -95,6 +95,23 @@ _autoenv_python() {
 	fi
 }
 
+_autoenv_java() {
+	CURRENT_JENV_PATH="$JENV_PATH"
+	JENV_PATH="$(fsbranchfind ".jenv")"
+	found=$?
+	export JENV_PATH
+	if [ "$JENV_PATH" != "$CURRENT_JENV_PATH" ]; then
+		if [ "$found" -eq 0 ]; then
+			if [ ! -z "$JENV_PATH" ]; then
+				export JAVA_HOME="$(/usr/libexec/java_home -Rv "$(cat "$JENV_PATH")")"
+			fi
+			return 0
+		else
+			unset JAVA_HOME
+		fi
+	fi
+}
+
 
 ##
 # AutoEnv All
@@ -104,6 +121,7 @@ _autoenv() {
 	_autoenv_go
 	_autoenv_python
 	_autoenv_node
+	_autoenv_java
 }
 
 ##
@@ -113,6 +131,7 @@ autoenv() {
 	[ ! -z "$VENV_PATH" ] && printf "VENV_PATH=%s\n" "$VENV_PATH"
 	[ ! -z "$NODE_BIN" ] && printf "NODE_BIN=%s\n" "$NODE_BIN"
 	[ ! -z "$ENV_PATH" ] && printf "ENV_PATH=%s\n" "$ENV_PATH"
+	[ ! -z "$JENV_PATH" ] && printf "JENV_PATH=%s\n" "$JENV_PATH" 
 	return 0
 }
 
@@ -124,5 +143,6 @@ _autoenv_str() {
 	[ ! -z "$VENV_PATH" ] && printf ""
 	[ ! -z "$NODE_BIN" ] && printf ""
 	[ ! -z "$ENV_PATH" ] && printf "E"
+	[ ! -z "$JENV_PATH" ] && printf ""
 }
 

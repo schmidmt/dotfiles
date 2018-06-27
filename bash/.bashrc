@@ -95,7 +95,7 @@ _update_ps1() {
     # Add environmental indicators to path
     indicators="$(_autoenv_str)"
     if [ ! -z "$indicators" ]; then
-      PS1="${PS1} ${BIYellow}(${indicators})${Color_Off}"
+      PS1="${PS1}${BIYellow}[${indicators}]${Color_Off}"
     fi
 
     # Add git environment to PS1
@@ -124,3 +124,6 @@ fi
 
 # shellcheck source=/dev/null
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# added by travis gem
+[ -f /Users/mschmidt/.travis/travis.sh ] && source /Users/mschmidt/.travis/travis.sh
