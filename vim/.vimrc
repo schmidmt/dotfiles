@@ -15,7 +15,7 @@ silent! if plug#begin('~/.vim/plugged')
 " Colors
 " Plug 'hzchirs/vim-material'
 " Plug 'MaxSt/FlatColor'
-" Plug 'mhartington/oceanic-next'
+Plug 'mhartington/oceanic-next'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'gosukiwi/vim-atom-dark'
 " Plug 'tomasr/molokai'
@@ -25,7 +25,7 @@ silent! if plug#begin('~/.vim/plugged')
 " Plug 'vim-scripts/miko'
 " Plug 'vim-scripts/Gentooish'
 " Plug 'NLKNguyen/papercolor-theme'
-Plug 'lu-ren/SerialExperimentsLain'
+"Plug 'lu-ren/SerialExperimentsLain'
 
 " Edit
 " Plug 'davidbeckingsale/writegood.vim'
@@ -78,6 +78,14 @@ Plug 'vim-scripts/a.vim'
 "
 "Plug 'maralla/completor.vim'
 Plug 'FooSoft/vim-argwrap' 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 
 " Misc
 Plug 'Yggdroot/indentLine'
@@ -141,7 +149,7 @@ nmap <silent> <leader>ef :Ftedit()<CR>
 
 filetype plugin indent on
 
-silent! colorscheme SerialExperimentsLain
+silent! colorscheme OceanicNext
 
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=utf-8,latin1
