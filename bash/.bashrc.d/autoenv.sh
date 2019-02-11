@@ -77,7 +77,7 @@ _autoenv_python() {
 	export VENV_PATH
 	if [ "$VENV_PATH" != "$CURRENT_VENV_PATH" ]; then
 		if [ "$found" -eq 0 ]; then
-			if [ ! -z "$VENV_PATH" ]; then
+			if [ -n "$VENV_PATH" ]; then
 				# shellcheck source=/dev/null
 				. "$VENV_PATH/bin/activate"
 			fi
@@ -87,7 +87,7 @@ _autoenv_python() {
 				if isfunc deactivate; then
 					deactivate
 				else
-					source deactivate
+					. deactivate
 				fi
 			fi
 			return 1
@@ -102,13 +102,14 @@ _autoenv_java() {
 	export JENV_PATH
 	if [ "$JENV_PATH" != "$CURRENT_JENV_PATH" ]; then
 		if [ "$found" -eq 0 ]; then
-			if [ ! -z "$JENV_PATH" ]; then
-				export JAVA_HOME="$(/usr/libexec/java_home -Rv "$(cat "$JENV_PATH")")"
+			if [ -n "$JENV_PATH" ]; then
+				JAVA_HOME="$(/usr/libexec/java_home -Rv "$(cat "$JENV_PATH")")"
 			fi
 			return 0
 		else
-			unset JAVA_HOME
+			JAVA_HOME="$(/usr/libexec/java_home -RV 1.8)"
 		fi
+		export JAVA_HOME
 	fi
 }
 
@@ -127,11 +128,11 @@ _autoenv() {
 ##
 # AutoEnv describe
 autoenv() {
-	[ ! -z "$GOPATH" ] && printf "GOPATH=%s\n" "$GOPATH"
-	[ ! -z "$VENV_PATH" ] && printf "VENV_PATH=%s\n" "$VENV_PATH"
-	[ ! -z "$NODE_BIN" ] && printf "NODE_BIN=%s\n" "$NODE_BIN"
-	[ ! -z "$ENV_PATH" ] && printf "ENV_PATH=%s\n" "$ENV_PATH"
-	[ ! -z "$JENV_PATH" ] && printf "JENV_PATH=%s\n" "$JENV_PATH" 
+	[ -n "$GOPATH" ] && printf "GOPATH=%s\n" "$GOPATH"
+	[ -n "$VENV_PATH" ] && printf "VENV_PATH=%s\n" "$VENV_PATH"
+	[ -n "$NODE_BIN" ] && printf "NODE_BIN=%s\n" "$NODE_BIN"
+	[ -n "$ENV_PATH" ] && printf "ENV_PATH=%s\n" "$ENV_PATH"
+	[ -n "$JENV_PATH" ] && printf "JENV_PATH=%s\n" "$JENV_PATH" 
 	return 0
 }
 
@@ -139,10 +140,10 @@ autoenv() {
 ##
 # AutoEnv string
 _autoenv_str() {
-	[ ! -z "$GOPATH" ] && printf ""
-	[ ! -z "$VENV_PATH" ] && printf ""
-	[ ! -z "$NODE_BIN" ] && printf ""
-	[ ! -z "$ENV_PATH" ] && printf "E"
-	[ ! -z "$JENV_PATH" ] && printf ""
+	[ -n "$GOPATH" ] && printf ""
+	[ -n "$VENV_PATH" ] && printf ""
+	[ -n "$NODE_BIN" ] && printf ""
+	[ -n "$ENV_PATH" ] && printf "E"
+	[ -n "$JENV_PATH" ] && printf ""
 }
 

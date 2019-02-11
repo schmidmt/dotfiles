@@ -2,6 +2,7 @@
 [user]
   email = schmidmt@gmail.com
   name = Mike Schmidt
+	signingkey = 0xD62B5FB304724921
   # signingkey = B127342C463AD19CB2C2D16A1A9B7588C5BE9A9C
 [push]
   default = simple
@@ -14,6 +15,7 @@
   wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
   bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+	pushf = push --force-with-lease
 
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gvdiff\" \"$MERGED\"
@@ -36,3 +38,8 @@
   required = true
 [commit]
   # gpgsign = true
+[pager]
+  diff = diff-so-fancy | less --tabs=1,5 -RFX
+  show = diff-so-fancy | less --tabs=1,5 -RFX
+[rebase]
+	autosquash = true

@@ -94,12 +94,16 @@ Plug 'rhysd/vim-grammarous'
 Plug 'mhinz/vim-rfc'
 "Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'takac/vim-hardtime'
+Plug 'junegunn/fzf.vim'
+" Plug 'takac/vim-hardtime'
 Plug 'romainl/vim-cool'
 Plug 'janko-m/vim-test'
 
 Plug 'vim-scripts/Vim-R-plugin'
 Plug 'maverickg/stan.vim'
+
+
+Plug 'natebosch/vim-lsc'
 
 call plug#end()
 endif
@@ -381,44 +385,39 @@ let g:snips_email='schmidmt@gmail.com'
 let g:netrw_banner = 0
 
 " ----------------------------------------------------------------------------
-" Goyo
+" FZF
 " ----------------------------------------------------------------------------
 
-function! s:goyo_enter()
-  silent !tmux set status off
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-  Limelight
-  if has('gui_running')
-    set fullscreen
-    set linespace=7
-  elseif exists('$TMUX')
-    silent !tmux set status off
-  endif
-endfunction
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --no-messages "" .'
+endif
 
-function! s:goyo_leave()
-  silent !tmux set status on
-  set showmode
-  set showcmd
-  set scrolloff=5
-  Limelight!
-  if has('gui_running')
-    set nofullscreen
-    set linespace=0
-  elseif exists('$TMUX')
-    silent !tmux set status on
-  endif
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+let g:fzf_command_prefix = 'Fzf'
+if executable('fzf')
+  nnoremap <leader>v :FzfFiles<cr>
+  nnoremap <leader>u :FzfTags<cr>
+  nnoremap <leader>j :call fzf#vim#tags("'".expand('<cword>'))<cr>
+endif
 
 " ----------------------------------------------------------------------------
 " Racer
 " ----------------------------------------------------------------------------
 let g:completor_racer_binary = "/Users/mschmidt/.cargo/bin/racer"
 
+" ----------------------------------------------------------------------------
+" Scala
+" ----------------------------------------------------------------------------
+au BufRead,BufNewFile *.sbt set filetype=scala
+
+let g:lsc_enable_autocomplete = v:false
+let g:lsc_server_commands = {
+  \  'scala': {
+  \    'command': 'metals-vim',
+  \    'log_level': 'Log'
+  \  }
+  \}
+let g:lsc_auto_map = {
+  \  'GoToDefinition': 'gd',
+  \}
 
 " }}}
