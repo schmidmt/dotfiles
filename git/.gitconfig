@@ -2,8 +2,7 @@
 [user]
   email = schmidmt@gmail.com
   name = Mike Schmidt
-	signingkey = 0xD62B5FB304724921
-  # signingkey = B127342C463AD19CB2C2D16A1A9B7588C5BE9A9C
+  signingkey = 0xD62B5FB304724921
 [push]
   default = simple
 [alias]

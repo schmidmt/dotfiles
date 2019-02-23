@@ -124,6 +124,3 @@ fi
 
 # shellcheck source=/dev/null
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# added by travis gem
-[ -f /Users/mschmidt/.travis/travis.sh ] && source /Users/mschmidt/.travis/travis.sh

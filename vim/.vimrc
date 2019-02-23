@@ -1,16 +1,26 @@
 " vim: set foldmethod=marker foldlevel=0:
 " =============================================================================
-" Schmidmt's .vimrc {{{
+" Schmidmt's .vimrc
 " =============================================================================
 
-
-" }}}
 " =============================================================================
-" Plugins Block {{{
+" Pre-Plugin 
+" =============================================================================
+let g:ale_completion_enabled = 1
+
+" 
+" =============================================================================
+" Plugins Block 
 " =============================================================================
 
 filetype off
 silent! if plug#begin('~/.vim/plugged')
+
+" Language Server
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 " Colors
 " Plug 'hzchirs/vim-material'
@@ -45,9 +55,9 @@ Plug 'tpope/vim-fugitive'
 
 " Lang
 "Plug 'JuliaLang/julia-vim', {'for': 'julia'}
-Plug 'dag/vim-fish', {'for': 'fish'}
-Plug 'adimit/prolog.vim', {'for': 'prolog'}
-Plug 'digitaltoad/vim-jade', {'for': ['jade', 'pug']}
+"Plug 'dag/vim-fish', {'for': 'fish'}
+"Plug 'adimit/prolog.vim', {'for': 'prolog'}
+"Plug 'digitaltoad/vim-jade', {'for': ['jade', 'pug']}
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'honza/dockerfile.vim', {'for': 'dockerfile'}
@@ -63,6 +73,7 @@ Plug 'wting/rust.vim', {'for': 'rust'}
 Plug 'derekwyatt/vim-scala'
 " Plug 'racer-rust/vim-racer'
 Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'cespare/vim-toml'
 
 " Code Management
 Plug 'w0rp/ale'
@@ -108,9 +119,9 @@ Plug 'natebosch/vim-lsc'
 call plug#end()
 endif
 
-" }}}
+" 
 " =============================================================================
-" Basic Settings {{{
+" Basic Settings 
 " =============================================================================
 
 set nocompatible
@@ -170,9 +181,19 @@ if has("autocmd")
   \ endif
 endif
 
-" }}}
 " =============================================================================
-" Clipboard Config {{{
+" Rust Language Server
+" =============================================================================
+if executable('rls')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'rls',
+    \ 'cmd': { server_info->['rustup', 'run', 'stable', 'rls']},
+    \ 'whitelist': ['rust'],
+  \ })
+endif
+" 
+" =============================================================================
+" Clipboard Config 
 " =============================================================================
 " function! ClipboardYank()
 "   call system('xclip -i -selection clipboard', @@)
@@ -185,9 +206,9 @@ endif
 " vnoremap <silent> d d:call ClipboardYank()<cr>
 " nnoremap <silent> p :call ClipboardPaste()<cr>p
 
-" }}}
+" 
 " =============================================================================
-" CScope Config {{{
+" CScope Config 
 " =============================================================================
 
 if has("cscope") && filereadable("/usr/bin/cscope")
@@ -205,9 +226,9 @@ if has("cscope") && filereadable("/usr/bin/cscope")
    set csverb
 endif
 
-" }}}
+" 
 " =============================================================================
-" Hilighting Config {{{
+" Hilighting Config 
 " =============================================================================
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -217,9 +238,9 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-" }}}
+" 
 " =============================================================================
-" Helpful Mappings {{{
+" Helpful Mappings 
 " =============================================================================
 
 " ----------------------------------------------------------------------------
@@ -335,9 +356,9 @@ endfunction
 command! Ftedit call s:ftedit()
 
 
-" }}}
+" 
 " =============================================================================
-" Plugins {{{
+" Plugins 
 " =============================================================================
 
 " ----------------------------------------------------------------------------
@@ -420,4 +441,4 @@ let g:lsc_auto_map = {
   \  'GoToDefinition': 'gd',
   \}
 
-" }}}
+" 

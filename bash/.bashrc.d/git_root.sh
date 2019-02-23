@@ -4,6 +4,6 @@
 # ARGUMENTS:
 # RETURNS: True if success, false, otherwise
 ####################
-git_root() {
+git-root() {
   cd "$(git rev-parse --show-toplevel)"
 }
