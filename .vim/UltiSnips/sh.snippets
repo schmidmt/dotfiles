@@ -1,0 +1,27 @@
+snippet #! "Sha-bang line with vim-modeline" b
+#!/bin/sh
+#
+# `!v bufname("%")`: DESCRIPTION
+# vim: ts=2 sw=2 cc=80
+endsnippet
+
+snippet func "Function and doclines" b
+####################
+# ${1:function} TODO
+# GLOBALS:
+#		${2:VARIABLE} - TODO
+# ARGUMENTS:
+#		1 - NAME - TODO
+#	RETURNS:
+#		VALUE or NONE
+####################
+$1() {
+
+	# Return True
+	return 0
+}
+endsnippet
+
+snippet TODO "TODO note with user and date" b
+# TODO: `echo $USER` (`!v strftime("%c")`): $0
+endsnippet
