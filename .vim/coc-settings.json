@@ -1,0 +1,32 @@
+{
+    "python.formatting.provider": "black",
+    "rust-analyzer.cargo.allFeatures": true,
+    "diagnostic.displayByAle": true,
+    "rust-analyzer.procMacro.enable": true,
+    "rust-analyzer.updates.channel": "stable",
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.formatOnSaveFiletypes": ["rust"],
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
+    }
+}
