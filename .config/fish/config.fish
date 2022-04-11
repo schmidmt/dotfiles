@@ -49,7 +49,7 @@ starship init fish | source
 source ~/.iterm2_shell_integration.(basename $SHELL)
 
 # Setup minikube's docker connection
-eval (timeout 3s minikube docker-env)
+#eval (timeout 3s minikube docker-env)
 set -gx DOCKER_BUILDKIT 1
 set -gx COMPOSE_DOCKER_CLI_BUILD 1
 
