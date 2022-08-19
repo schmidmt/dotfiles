@@ -99,11 +99,13 @@ source ~/.config/nvim/plugins/fugitive.vim
 source ~/.config/nvim/plugins/fzf.vim
 source ~/.config/nvim/plugins/highlightedyank.vim
 source ~/.config/nvim/plugins/indentline.vim
+source ~/.config/nvim/plugins/just.vim
 source ~/.config/nvim/plugins/lsp.vim
 source ~/.config/nvim/plugins/markdown.vim
 source ~/.config/nvim/plugins/matchup.vim
 source ~/.config/nvim/plugins/nerdtree.vim
 source ~/.config/nvim/plugins/oceanic.vim
+source ~/.config/nvim/plugins/oso.vim
 source ~/.config/nvim/plugins/polyglot.vim
 source ~/.config/nvim/plugins/rooter.vim
 source ~/.config/nvim/plugins/securemodelines.vim

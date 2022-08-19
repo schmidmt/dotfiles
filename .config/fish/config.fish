@@ -55,3 +55,7 @@ set -gx COMPOSE_DOCKER_CLI_BUILD 1
 
 # Sccache Settings
 set -gx RUSTC_WRAPPER /Users/schmidmt/.cargo/bin/sccache
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+set --export --prepend PATH "/Users/schmidmt/.rd/bin"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

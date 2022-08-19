@@ -1,6 +1,9 @@
 {
     "python.formatting.provider": "black",
-    "rust-analyzer.cargo.allFeatures": true,
+    "python.linting.mypyEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.banditEnabled": true,
+    "rust-analyzer.inlayHints.typeHints.enable": true,
     "diagnostic.displayByAle": true,
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.updates.channel": "stable",
@@ -27,6 +30,16 @@
                     "directory": "/tmp/ccls"
                 }
             }
+        },
+        "terraform": {
+            "command": "terraform-ls",
+			"args": ["serve"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
+			"initializationOptions": {},
+			"settings": {}
         }
     }
 }
