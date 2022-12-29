@@ -110,6 +110,7 @@ source ~/.config/nvim/plugins/polyglot.vim
 source ~/.config/nvim/plugins/rooter.vim
 source ~/.config/nvim/plugins/securemodelines.vim
 source ~/.config/nvim/plugins/tex.vim
+source ~/.config/nvim/plugins/treesitter.vim
 
 call plug#end()
 doautocmd User PlugLoaded
