@@ -1,32 +1,9 @@
 local lsp = require('lsp-zero').preset({})
 
-
-lsp.ensure_installed({
-    'tsserver',
-    'eslint',
-    'rust_analyzer',
-    'html',
-    'pyright',
-})
-
--- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
-
 lsp.on_attach(function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
+    lsp.default_keymaps({ buffer = bufnr })
 
-    if client.name == "eslint" then
-        vim.cmd.LspStop('eslint')
-        return
-    end
+    local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
@@ -44,6 +21,47 @@ lsp.on_attach(function(client, bufnr)
 
     require('lsp-format').on_attach(client)
 end)
+
+
+lsp.ensure_installed({
+    'rust_analyzer',
+    'tsserver',
+    'eslint',
+    'pyright',
+    'html',
+    'lua_ls',
+})
+
+--  Configure language servers
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+lsp.configure('lua_ls', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+})
+
+require('lspconfig').rust_analyzer.setup({
+    imports = {
+        granularity = {
+            group = "module",
+        },
+        prefix = "self",
+    },
+    cargo = {
+        buildScripts = {
+            enable = true,
+        },
+        features = "all",
+    },
+    procMacro = {
+        enable = true
+    },
+})
 
 
 lsp.nvim_workspace()
