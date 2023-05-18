@@ -16,13 +16,11 @@ brew "act"
 brew "xz"
 brew "python@3.11"
 brew "ansible", link: false
-brew "little-cms2"
 brew "webp"
 brew "jpeg-xl"
 brew "arping"
 brew "python@3.10"
 brew "asciinema"
-brew "assimp"
 brew "glib"
 brew "python@3.9"
 brew "autoconf"
@@ -175,3 +173,5 @@ cask "steam"
 cask "wireshark-chmodbpf"
 cask "rancher", args: { appdir: "/Applications" }
 cask "iterm2", args: { appdir: "/Applications" }
+cask "rectangle"
+cask "lulu", args: { appdir: "/Applications" }

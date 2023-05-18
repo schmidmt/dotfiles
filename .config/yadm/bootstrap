@@ -26,4 +26,8 @@ if [ "$system_type" = "Darwin" ]; then
     echo "Bootstraping Vim"
     nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
   fi
+
+  # set os settings
+  sudo bash ~/.osx
+
 fi
