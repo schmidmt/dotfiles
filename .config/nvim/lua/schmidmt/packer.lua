@@ -47,18 +47,20 @@ return require('packer').startup(function(use)
     end
   }
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
-  use 'nvim-treesitter/playground'
-  use 'nvim-treesitter/nvim-treesitter-context'
   use 'mbbill/undotree'
-  use 'lukas-reineke/lsp-format.nvim'
+  use {
+    'lukas-reineke/lsp-format.nvim',
+    config = function()
+      require("lsp-format").setup {}
+    end
+  }
   use {
     'ellisonleao/glow.nvim',
     config = function()
       require('glow').setup()
     end
   }
-  use 'mfussenegger/nvim-jdtls'
-
+  -- use 'mfussenegger/nvim-jdtls'
   use({
     "asiryk/auto-hlsearch.nvim",
     tag = "1.0.0",
@@ -86,17 +88,12 @@ return require('packer').startup(function(use)
       { 'hrsh7th/nvim-cmp' },     -- Required
       { 'hrsh7th/cmp-nvim-lsp' }, -- Required
       { 'L3MON4D3/LuaSnip' },     -- Required
+      -- Good looking status display
+      { 'j-hui/fidget.nvim' },    -- Optional
     },
     -- config = function() require("schmidmt.config.lsp").setup() end,
   }
 
-  use {
-    'm-demare/hlargs.nvim',
-    requires = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('hlargs').setup()
-    end
-  }
   use({ "L3MON4D3/LuaSnip", tag = "v1.*" })
 
   use {
@@ -123,16 +120,28 @@ return require('packer').startup(function(use)
     end
   })
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-  }
-  use { -- Additional text objects via treesitter
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter',
-  }
+  -- use {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   run = ':TSUpdate',
+  -- }
+  -- use { -- Additional text objects via treesitter
+  --   'nvim-treesitter/nvim-treesitter-textobjects',
+  --   after = 'nvim-treesitter',
+  -- }
 
-  use 'j-hui/fidget.nvim'
+  -- use {
+  --   'm-demare/hlargs.nvim',
+  --   requires = { 'nvim-treesitter/nvim-treesitter' },
+  --   config = function()
+  --     require('hlargs').setup()
+  --   end
+  -- }
+  -- use 'nvim-treesitter/playground'
+  -- use {
+  --     'nvim-treesitter/nvim-treesitter-context',
+  --      requires = { 'nvim-treesitter/nvim-treesitter' },
+  -- }
+
   use 'folke/neodev.nvim'
 
   use {
@@ -146,14 +155,10 @@ return require('packer').startup(function(use)
     end
   }
 
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  })
-
-
-
-
+  -- use({
+  --   "iamcco/markdown-preview.nvim",
+  --   run = function() vim.fn["mkdp#util#install"]() end,
+  -- })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

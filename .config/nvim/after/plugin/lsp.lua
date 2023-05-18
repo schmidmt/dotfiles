@@ -61,6 +61,11 @@ require('lspconfig').rust_analyzer.setup({
     procMacro = {
         enable = true
     },
+    settings = {
+        files = {
+            excludeDirs = { ".venv", ".tox" },
+        },
+    }
 })
 
 

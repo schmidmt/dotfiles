@@ -1,5 +1,6 @@
 fish_add_path /usr/local/bin/
 fish_add_path /usr/local/sbin
+fish_add_path /Users/schmidmt/Library/Python/3.10/bin
 
 # Add LLVM to path
 fish_add_path /usr/local/opt/llvm/bin
@@ -60,6 +61,9 @@ set -gx COMPOSE_DOCKER_CLI_BUILD 1
 
 # Sccache Settings
 set -gx RUSTC_WRAPPER /Users/schmidmt/.cargo/bin/sccache
+
+# Setup pyenv
+pyenv init - | source
 
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
