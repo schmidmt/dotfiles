@@ -21,13 +21,18 @@ if [ "$system_type" = "Darwin" ]; then
     defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
   fi
 
-  # Set up neovim
-  if command -v nvim >/dev/null 2>&1; then
-    echo "Bootstraping Vim"
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-  fi
 
   # set os settings
   sudo bash ~/.osx
+fi
 
+# Set up neovim
+if command -v nvim >/dev/null 2>&1; then
+  echo "Bootstraping Vim"
+  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+fi
+
+if [ -e "$HOME/.cargo/bin/rustup" ] && command -v rustup-init >/dev/null 2>&1; then
+  echo "Installing RustUp"
+  rustup-init -y --no-modify-path
 fi
