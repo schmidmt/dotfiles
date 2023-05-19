@@ -60,7 +60,10 @@ set -gx DOCKER_BUILDKIT 1
 set -gx COMPOSE_DOCKER_CLI_BUILD 1
 
 # Sccache Settings
-set -gx RUSTC_WRAPPER /Users/schmidmt/.cargo/bin/sccache
+#set -gx RUSTC_WRAPPER /Users/schmidmt/.cargo/bin/sccache
+
+# Set fzf bindings
+fzf_configure_bindings --directory=\cf
 
 # Setup pyenv
 pyenv init - | source

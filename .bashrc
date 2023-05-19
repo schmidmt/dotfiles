@@ -127,6 +127,8 @@ fi
 
 . "$HOME/.cargo/env"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/schmidmt/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
