@@ -65,3 +65,5 @@
 [init]
 	defaultBranch = main
 	templateDir = /Users/schmidmt/.git-template
+[maintenance]
+	repo = /Users/schmidmt/code/redpoll/lace

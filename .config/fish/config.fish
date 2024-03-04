@@ -33,13 +33,13 @@ end
 
 
 # Set some helpful aliaes
-alias python=python3
-alias pip="python3 -m pip"
+#alias python=python3
+#alias pip="python3 -m pip"
 alias vim=nvim
 alias cat=bat
-alias ls=exa
+alias ls=eza
 alias find=fd
-alias ps=procs
+#alias ps=procs
 
 # Setup the fuck
 eval (thefuck --alias | tr '\n' ';')
@@ -68,6 +68,11 @@ fzf_configure_bindings --directory=\cf
 # Setup pyenv
 pyenv init - | source
 
+
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 set --export --prepend PATH "/Users/schmidmt/.rd/bin"

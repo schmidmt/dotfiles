@@ -30,6 +30,7 @@ lsp.ensure_installed({
     'pyright',
     'html',
     'lua_ls',
+    'ruff_lsp',
 })
 
 --  Configure language servers
@@ -46,25 +47,44 @@ lsp.configure('lua_ls', {
 })
 
 require('lspconfig').rust_analyzer.setup({
-    imports = {
-        granularity = {
-            group = "module",
-        },
-        prefix = "self",
-    },
-    cargo = {
-        buildScripts = {
-            enable = true,
-        },
-        features = "all",
-    },
-    procMacro = {
-        enable = true
-    },
     settings = {
-        files = {
-            excludeDirs = { ".venv", ".tox" },
-        },
+        ['rust-analyzer'] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+                features = "all",
+            },
+            procMacro = {
+                enable = true
+            },
+            diagnostics = true,
+            files = {
+                excludeDirs = { ".venv", ".tox" },
+            },
+            inlayHints = {
+                lifetimeElisionHints = {
+                    enable = true,
+                },
+                reborrowHints = {
+                    enable = true,
+                }
+            }
+        }
+    }
+})
+
+require('lspconfig').ruff_lsp.setup({
+    init_options = {
+        settings = {
+            args = {}
+        }
     }
 })
 
