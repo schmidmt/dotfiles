@@ -1,46 +1,60 @@
-vim.opt.guicursor =
-"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+-- Set the mapleader key
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
-vim.opt.nu = true
--- vim.opt.relativenumber = true
+-- [[ Setting Options ]]
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+-- Enable line numbering
+vim.opt.number = true
 
-vim.opt.smartindent = true
+-- Enable mouse mode
+vim.opt.mouse = 'a'
 
-vim.opt.wrap = false
+-- Hide the mode since it's in the modeline anyway
+vim.opt.showmode = false
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+-- Sync clipboard between os and neovim
+vim.opt.clipboard = 'unnamedplus'
+
+-- Enable breakindent
+vim.opt.breakindent = true
+
+-- Save undo history
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+-- Case-insensitive search unless \C or capital in search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-vim.opt.termguicolors = true
+-- Keep signcolumn on by default
+vim.opt.signcolumn = 'yes'
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+-- Decrease update time
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
-vim.opt.updatetime = 50
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
-vim.opt.colorcolumn = "80"
+-- Sets how neovim will display whitespaces in the editor
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
-vim.o.completeopt = "menuone,noinsert,noselect"
-vim.opt.shortmess = vim.opt.shortmess + "c"
+-- Preview substitutions
+vim.opt.inccommand = 'split'
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-    group = vim.api.nvim_create_augroup('highlight_yank', {}),
-    desc = 'Hightlight selection on yank',
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank { higroup = 'IncSearch', timeout = 500 }
-    end,
-})
+-- show line number for cursor
+vim.opt.cursorline = true
 
-vim.opt.wildmode = "longest,list:list,full"
+-- Set scrolloff (lines above and below buffer's true content)
+vim.opt.scrolloff = 10
+
+-- Set wildmode
+vim.opt.wildmode = 'longest,list:list,full'
+
+-- Disable autoindent
+vim.opt.autoindent = false
+
+-- Disable wrapping
+vim.opt.wrap = false

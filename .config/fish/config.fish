@@ -1,3 +1,5 @@
+fish_add_path -m /opt/homebrew/bin
+
 fish_add_path /usr/local/bin/
 fish_add_path /usr/local/sbin
 fish_add_path /Users/schmidmt/Library/Python/3.10/bin
@@ -16,7 +18,6 @@ fish_add_path ~/.fzf/bin
 # Use util-linux commands
 fish_add_path /usr/local/opt/util-linux/bin
 fish_add_path /usr/local/opt/util-linux/sbin
-
 
 # Start keychain for SSH and GPG
 if status --is-interactive
@@ -40,9 +41,6 @@ alias cat=bat
 alias ls=eza
 alias find=fd
 #alias ps=procs
-
-# Setup the fuck
-eval (thefuck --alias | tr '\n' ';')
 
 set -gx EXPORT (which nvim)
 
@@ -68,11 +66,6 @@ fzf_configure_bindings --directory=\cf
 # Setup pyenv
 pyenv init - | source
 
-
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 set --export --prepend PATH "/Users/schmidmt/.rd/bin"

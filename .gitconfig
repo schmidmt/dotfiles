@@ -64,6 +64,6 @@
 	prompt = false
 [init]
 	defaultBranch = main
-	templateDir = /Users/schmidmt/.git-template
+        # templateDir = /Users/schmidmt/.git-template
 [maintenance]
 	repo = /Users/schmidmt/code/redpoll/lace
