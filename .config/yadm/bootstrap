@@ -14,14 +14,6 @@ if [ "$system_type" = "Darwin" ]; then
     brew bundle --global
   fi
 
-
-  # Set iterm config
-  if [ -d "$HOME/.iterm2" ]; then
-    echo "Setting iTerm preference folder"
-    defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
-  fi
-
-
   # set os settings
   sudo bash ~/.osx
 fi
@@ -29,7 +21,7 @@ fi
 # Set up neovim
 if command -v nvim >/dev/null 2>&1; then
   echo "Bootstraping Vim"
-  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+  nvim --headless -c "autocmd User Lazy install" -c "quitall"
 fi
 
 if [ ! -e "$HOME/.cargo/bin/rustup" ] && command -v rustup-init >/dev/null 2>&1; then

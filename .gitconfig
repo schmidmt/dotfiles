@@ -2,9 +2,10 @@
 [user]
   email = schmidmt@gmail.com
   name = Mike Schmidt
-  signingkey = 0xD62B5FB304724921
+	signingkey = /Users/schmidmt/.ssh/id_ed25519
 [push]
   default = simple
+  autoSetupRemote = true
 [alias]
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   cur = rev-parse --short=0 HEAD
@@ -21,7 +22,7 @@
 [merge]
   tool = fugitive
 [rerere]
-  enabled = true
+  enabled = false
 
 [core]
   attributesfile = ~/.gitattributes_global
@@ -38,8 +39,8 @@
 [commit]
   # gpgsign = true
 [pager]
-  diff = diff-so-fancy | less --tabs=1,5 -RFX
-  show = diff-so-fancy | less --tabs=1,5 -RFX
+  #diff = diff-so-fancy | less --tabs=1,5 -RFX
+  #show = diff-so-fancy | less --tabs=1,5 -RFX
 [rebase]
 	autosquash = true
 [filter "lfs"]
@@ -67,3 +68,5 @@
         # templateDir = /Users/schmidmt/.git-template
 [maintenance]
 	repo = /Users/schmidmt/code/redpoll/lace
+[gpg]
+	format = ssh

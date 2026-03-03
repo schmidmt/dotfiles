@@ -58,3 +58,8 @@ vim.opt.autoindent = false
 
 -- Disable wrapping
 vim.opt.wrap = false
+
+-- Expand tabs
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4

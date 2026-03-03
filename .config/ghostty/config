@@ -1,0 +1,7 @@
+font-family = "Hack Nerd Font Mono"
+cursor-style = block
+command = /opt/homebrew/bin/tmux
+theme = flow
+shell-integration = fish
+
+#custom-shader = shaders/retro-terminal.glsl

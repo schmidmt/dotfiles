@@ -1,6 +1,7 @@
 return {
 
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-fugitive',
 
   -- visual commenting
   { 'numToStr/Comment.nvim', opts = {} },
@@ -172,6 +173,7 @@ return {
       -- Automatically install LSPs and related tools to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       'saghen/blink.cmp',
 
@@ -266,70 +268,6 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
-      -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-      --
-      --  Add any additional override configuration in the following tables. Available keys are:
-      --  - cmd (table): Override the default command used to start the server
-      --  - filetypes (table): Override the default list of associated filetypes for the server
-      --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-      --  - settings (table): Override the default settings passed when initializing the server.
-      --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
-        --
-
-        lua_ls = {
-          -- cmd = {...},
-          -- filetypes { ...},
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              runtime = { version = 'LuaJIT' },
-              workspace = {
-                checkThirdParty = false,
-                -- Tells lua_ls where to find all the Lua files that you have loaded
-                -- for your neovim configuration.
-                library = {
-                  '${3rd}/luv/library',
-                  unpack(vim.api.nvim_get_runtime_file('', true)),
-                },
-                -- If lua_ls is really slow on your computer, you can try this instead:
-                -- library = { vim.env.VIMRUNTIME },
-              },
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
-            },
-          },
-        },
-        rust_analyzer = {
-          cargo = {
-            features = 'all',
-          },
-          check = {
-            features = 'all',
-          },
-          files = {
-            excludeDirs = { '.venv' },
-          },
-        },
-        grammarly = {
-          filetypes = { 'markdown', 'quarto' },
-        },
-      }
-
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
@@ -337,27 +275,45 @@ return {
       --
       --  You can press `g?` for help in this menu
       require('mason').setup()
+      require('mason-lspconfig').setup()
+      require('mason-tool-installer').setup { ensure_installed = { 'rust_analyzer', 'lua_ls', 'stylua' } }
 
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format lua code
-      })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-      require('mason-lspconfig').setup {
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
+      vim.lsp.config('rust_analyzer', {
+        settings = {
+          ['rust-analyzer'] = {
+            cargo = {
+              features = 'all',
+            },
+            check = {
+              features = 'all',
+            },
+            files = {
+              excludeDirs = { '.venv' },
+            },
+            diagnostics = {
+              refreshSupport = false,
+            },
+          },
         },
-      }
+      })
+
+      vim.lsp.config('lua_ls', {
+        settings = {
+          Lua = {
+            runtime = { version = 'LuaJIT' },
+            workspace = {
+              checkThirdParty = false,
+              library = {
+                '${3rd}/luv/library',
+                unpack(vim.api.nvim_get_runtime_file('', true)),
+              },
+            },
+            completion = {
+              callSnippet = 'Replace',
+            },
+          },
+        },
+      })
     end,
   },
 
@@ -367,6 +323,11 @@ return {
     event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = true },
+    merge_keywords = true,
+    keywords = {
+      SAFETY = { icon = '', color = 'warning', alt = { 'SAFE' } },
+      IDEA = { icon = '', color = 'warning' },
+    },
   },
 
   { -- Collection of various small independent plugins/modules
@@ -431,14 +392,66 @@ return {
   },
   {
     'nvim-lualine/lualine.nvim',
-    opts = {
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = {
       options = {
         icons_enabled = true,
-        component_separators = '|',
-        section_separators = '',
-        theme = 'tokyonight',
+        theme = 'auto',
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        disabled_filetypes = {
+          statusline = {},
+          winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        always_show_tabline = true,
+        globalstatus = false,
+        refresh = {
+          statusline = 100,
+          tabline = 100,
+          winbar = 100,
+        },
       },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {},
+      },
+      tabline = {},
+      winbar = {},
+      inactive_winbar = {},
+      extensions = {},
     },
+    opts = function(_, opts)
+      local trouble = require 'trouble'
+      local symbols = trouble.statusline {
+        mode = 'lsp_document_symbols',
+        groups = {},
+        title = false,
+        filter = { range = true },
+        format = '{kind_icon}{symbol.name:Normal}',
+        -- The following line is needed to fix the background color
+        -- Set it to the lualine section you want to use
+        hl_group = 'lualine_c_normal',
+      }
+      print(pairs(opts))
+      table.insert(opts.sections.lualine_c, {
+        symbols.get,
+        cond = symbols.has,
+      })
+    end,
   },
   -- Add unto tree
   'mbbill/undotree',
@@ -455,18 +468,11 @@ return {
 
   -- Add Jupytest support
   {
-    'GCBallesteros/jupytext.nvim',
-    config = function()
-      require('jupytext').setup {
-        custom_language_formatting = {
-          python = {
-            extension = 'qmd',
-            style = 'quarto',
-            force_ft = 'quarto', -- you can set whatever filetype you want here
-          },
-        },
-      }
-    end,
+    'goerz/jupytext.nvim',
+    version = '0.2.0',
+    opts = {
+      format = 'markdown',
+    },
   },
   -- Add Otter to do lsp inside code blocks
   {
